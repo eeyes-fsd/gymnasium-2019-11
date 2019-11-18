@@ -40,6 +40,18 @@ $api->version('v1', [
                 ->name('api.user.update');
             $api->delete('user', 'UsersController@destroy')
                 ->name('api.user.destroy');
+
+            // 地址路由
+            $api->get('addresses', 'AddressesController@index')
+                ->name('api.addresses.index');
+            $api->get('addresses/{address}', 'AddressesController@show')
+                ->name('api.addresses.show');
+            $api->post('addresses', 'AddressesController@store')
+                ->name('api.addresses.store');
+            $api->put('addresses/{address}', 'AddressesController@update')
+                ->name('api.addresses.update');
+            $api->delete('addresses/{address}', 'AddressesController@destroy')
+                ->name('api.addresses.destroy');
         });
     });
 });
