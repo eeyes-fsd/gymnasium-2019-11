@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class AuthorizationsController extends Controller
 {
@@ -23,6 +25,8 @@ class AuthorizationsController extends Controller
 
         if (!$user = User::where('wx_openid', $response['openid'])->first()) {
             $user = User::create([
+                'name' => 'wx_user_' . Str::random(8),
+                'password' => '*',
                 'wx_openid' => $response['openid'],
                 'wx_session_key' => $response['session_key'],
             ]);

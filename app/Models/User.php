@@ -2,10 +2,24 @@
 
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * Class User
+ * @package App\Models
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $phone
+ * @property string $wx_openid
+ * @property string $wx_session_key
+ * @property Address $address
+ * @property Health $health
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ */
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
@@ -29,15 +43,6 @@ class User extends Authenticatable implements JWTSubject
     ];
 
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
-    /**
      * @return array
      */
     public function getJWTCustomClaims()
@@ -53,8 +58,19 @@ class User extends Authenticatable implements JWTSubject
         return $this->getKey();
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function addresses()
     {
         return $this->hasMany('App\Models\Address', 'user_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function health()
+    {
+        return $this->hasOne('App\Models\Health', 'user_id');
     }
 }

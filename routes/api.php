@@ -52,6 +52,14 @@ $api->version('v1', [
                 ->name('api.addresses.update');
             $api->delete('addresses/{address}', 'AddressesController@destroy')
                 ->name('api.addresses.destroy');
+
+            // 身体信息接口
+            $api->get('health', 'HealthController@show')
+                ->name('api.health.show');
+            $api->post('health', 'HealthController@store')
+                ->name('api.health.store');
+            $api->put('health', 'HealthController@update')
+                ->name('api.health.update');
         });
     });
 });

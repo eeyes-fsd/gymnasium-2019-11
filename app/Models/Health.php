@@ -2,24 +2,25 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 /**
- * Class Address
+ * Class Health
  * @package App\Models
  *
  * @property int $id
  * @property int $user_id
  * @property User $user
- * @property string $name
- * @property string $phone
- * @property string $details
+ * @property int $age
+ * @property string $gender
+ * @property float $weight
+ * @property int $height
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */
-class Address extends Model
+class Health extends Model
 {
     /**
+     * 定义身体状况与用户的关联关系
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()
