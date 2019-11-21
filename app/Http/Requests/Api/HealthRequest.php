@@ -12,10 +12,12 @@ class HealthRequest extends Request
     public function rules()
     {
         return [
-            'age' => 'required|numeric',
+            'birthday' => 'required|date',
             'gender' => 'required|in:m,f',
             'weight' => 'required',
-            'height' => 'required|numeric'
+            'height' => 'required|numeric',
+            'exercise' => 'required',
+            'purpose' => 'required',
         ];
     }
 }

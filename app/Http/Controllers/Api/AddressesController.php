@@ -15,10 +15,8 @@ class AddressesController extends Controller
      */
     public function index()
     {
-        $addresses = Auth::guard('api')->user()->addresses();
-
-        $this->authorize('show', $addresses->first());
-
+        $addresses = Auth::guard('api')->user()->addresses;
+        if ($addresses->isNotEmpty()) $this->authorize('show', $addresses->first());
         return $this->response->collection($addresses, new AddressTransformer());
     }
 
@@ -29,7 +27,7 @@ class AddressesController extends Controller
      */
     public function show(Address $address)
     {
-        $this->authorize('show', $address);
+        if (!empty($address)) $this->authorize('show', $address);
         return $this->response->item($address, new AddressTransformer());
     }
 
@@ -39,7 +37,9 @@ class AddressesController extends Controller
      */
     public function store(AddressRequest $request)
     {
-        $address = Address::create($request->all());
+        $attributes = $request->all();
+        $attributes['user_id'] = Auth::guard('api')->id();
+        $address = Address::create($attributes);
         return $this->response->created(app('Dingo\Api\Routing\UrlGenerator')->version('v1')->route('api.addresses.show', $address->id));
     }
 

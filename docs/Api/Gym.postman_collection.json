@@ -1,0 +1,873 @@
+{
+	"info": {
+		"_postman_id": "1c2a4f03-9914-4c35-86d4-3ef13ccaf5da",
+		"name": "Gym",
+		"description": "健身房项目API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authorization",
+			"item": [
+				{
+					"name": "刷新Token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL2FwaVwvYXV0aG9yaXphdGlvbnNcL2N1cnJlbnQiLCJpYXQiOjE1NzQyNTEyMjIsImV4cCI6MTU3NDI1ODg1MSwibmJmIjoxNTc0MjU1MjUxLCJqdGkiOiI0TDBoTDh4cTJvaWZsV0prIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.zr51sMIK-o_-tDjEdCuzuprHGE8gwC3E6aFHPESgvgg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/authorizations/current",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"authorizations",
+								"current"
+							]
+						},
+						"description": "请求此接口刷新Token"
+					},
+					"response": []
+				},
+				{
+					"name": "微信小程序登录",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "code",
+									"value": "SdqFwNSdmqa04kYLcpyRanvI3zRajAXxZikH",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api_host}}/authorizations/weapp",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"authorizations",
+								"weapp"
+							]
+						},
+						"description": "微信小程序通过此接口登录，提供Code"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "获取用户数据",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzQyNTEyMjIsImV4cCI6MTU3NDI1NDgyMiwibmJmIjoxNTc0MjUxMjIyLCJqdGkiOiJLbExYU1NKWGZtNlZHUTl2Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Rug2WQ8sgAVV8bvPPe4L0RTUowKprkwE6xCprM8E-JU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/user",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"user"
+							]
+						},
+						"description": "请求此接口获取用户数据"
+					},
+					"response": []
+				},
+				{
+					"name": "删除用户数据",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzQyNTEyMjIsImV4cCI6MTU3NDI1NDgyMiwibmJmIjoxNTc0MjUxMjIyLCJqdGkiOiJLbExYU1NKWGZtNlZHUTl2Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Rug2WQ8sgAVV8bvPPe4L0RTUowKprkwE6xCprM8E-JU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/user",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"user"
+							]
+						},
+						"description": "请求此接口注销用户"
+					},
+					"response": []
+				},
+				{
+					"name": "更新用户数据",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzQyNTU2NDQsImV4cCI6MTU3NDI1OTI0NCwibmJmIjoxNTc0MjU1NjQ0LCJqdGkiOiJsaVRvQ0JUR1RBaHIxa09mIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.0ukjKsTkqwy4imTkIYaQ08ircgwXF4z2IAuSwhR8JWs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"phone\": \"13455987659\",\n\t\"captcha\": \"559987\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/user",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"user"
+							]
+						},
+						"description": "请求此接口更新用户数据"
+					},
+					"response": [
+						{
+							"name": "更新用户数据(失败)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"phone\": \"13455987659\",\n\t\"captcha\": \"559987\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/user",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 20 Nov 2019 13:26:49 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 20 Nov 2019 13:26:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.10"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1574256467"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"phone\": [\n        \"手机号码未验证\"\n    ]\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Health",
+			"item": [
+				{
+					"name": "存储健康状况",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzQyNTEyMjIsImV4cCI6MTU3NDI1NDgyMiwibmJmIjoxNTc0MjUxMjIyLCJqdGkiOiJLbExYU1NKWGZtNlZHUTl2Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Rug2WQ8sgAVV8bvPPe4L0RTUowKprkwE6xCprM8E-JU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"gender\": \"m\",\n\t\"birthday\": \"2000-01-14\",\n\t\"weight\": 75.2,\n\t\"height\": 176,\n\t\"exercise\": 1,\n\t\"purpose\": 1,\n\t\"fat\": 0.3,\n\t\"salt\": 0.2,\n\t\"work_time\": \"10:00\",\n\t\"rest_time\": \"23:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/health",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"health"
+							]
+						},
+						"description": "请求此接口，存储健康状况。已有健康状况请求此接口会修改已有数据。"
+					},
+					"response": [
+						{
+							"name": "存储健康状况",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"gender\": \"m\",\n\t\"birthday\": \"2000-01-14\",\n\t\"weight\": 75.2,\n\t\"height\": 176,\n\t\"exercise\": 1,\n\t\"purpose\": 1,\n\t\"fat\": 0.3,\n\t\"salt\": 0.2,\n\t\"work_time\": \"10:00\",\n\t\"rest_time\": \"23:00\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost/api/health",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"health"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 20 Nov 2019 12:06:31 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 20 Nov 2019 12:06:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.10"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "private, must-revalidate"
+								},
+								{
+									"key": "Location",
+									"value": "http://localhost/api/health"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=UTF-8"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1574251627"
+								},
+								{
+									"key": "ETag",
+									"value": "\"da39a3ee5e6b4b0d3255bfef95601890afd80709\""
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "获取健康状况",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzQyNTEyMjIsImV4cCI6MTU3NDI1NDgyMiwibmJmIjoxNTc0MjUxMjIyLCJqdGkiOiJLbExYU1NKWGZtNlZHUTl2Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Rug2WQ8sgAVV8bvPPe4L0RTUowKprkwE6xCprM8E-JU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/health",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"health"
+							]
+						},
+						"description": "请求此接口获取健康状况"
+					},
+					"response": [
+						{
+							"name": "获取健康状况",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_host}}/health",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"health"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 20 Nov 2019 12:13:21 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 20 Nov 2019 12:13:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.10"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "private, must-revalidate"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1574252061"
+								},
+								{
+									"key": "ETag",
+									"value": "\"4f7350d19218d6ee1c57540596412295f9f85186\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"birthday\": \"2000-01-14\",\n        \"gender\": \"男\",\n        \"weight\": 75.2,\n        \"height\": 176,\n        \"exercise\": \"小于每周1次\",\n        \"purpose\": \"控制体重\",\n        \"fat_rate\": 0.3,\n        \"salt_rate\": 0.2,\n        \"work_time\": \"10:00:00-23:00:00\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "更新健康情况",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzQyNTEyMjIsImV4cCI6MTU3NDI1NDgyMiwibmJmIjoxNTc0MjUxMjIyLCJqdGkiOiJLbExYU1NKWGZtNlZHUTl2Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Rug2WQ8sgAVV8bvPPe4L0RTUowKprkwE6xCprM8E-JU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"gender\": \"m\",\n\t\"birthday\": \"2000-01-14\",\n\t\"weight\": 75.2,\n\t\"height\": 175,\n\t\"exercise\": 1,\n\t\"purpose\": 1,\n\t\"fat\": 0.3,\n\t\"salt\": 0.2,\n\t\"work_time\": \"10:00\",\n\t\"rest_time\": \"23:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/health",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"health"
+							]
+						},
+						"description": "请求此接口以更新健康数据，所有字段要求与创建时均相同"
+					},
+					"response": [
+						{
+							"name": "更新健康情况",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"gender\": \"m\",\n\t\"birthday\": \"2000-01-14\",\n\t\"weight\": 75.2,\n\t\"height\": 175,\n\t\"exercise\": 1,\n\t\"purpose\": 1,\n\t\"fat\": 0.3,\n\t\"salt\": 0.2,\n\t\"work_time\": \"10:00\",\n\t\"rest_time\": \"23:00\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/health",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"health"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 20 Nov 2019 12:17:27 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 20 Nov 2019 12:17:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.10"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "private, must-revalidate"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1574252283"
+								},
+								{
+									"key": "Content-Type",
+									"value": ""
+								},
+								{
+									"key": "ETag",
+									"value": "\"da39a3ee5e6b4b0d3255bfef95601890afd80709\""
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Address",
+			"item": [
+				{
+					"name": "获取地址列表",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzQyNTU2NDQsImV4cCI6MTU3NDI1OTI0NCwibmJmIjoxNTc0MjU1NjQ0LCJqdGkiOiJsaVRvQ0JUR1RBaHIxa09mIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.0ukjKsTkqwy4imTkIYaQ08ircgwXF4z2IAuSwhR8JWs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/addresses",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"addresses"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "获取地址列表",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_host}}/addresses",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"addresses"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 20 Nov 2019 13:40:11 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 20 Nov 2019 13:40:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.10"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "private, must-revalidate"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1574257271"
+								},
+								{
+									"key": "ETag",
+									"value": "\"5ca11aac6f28adae8dbb80ce7750774aace3993d\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"许志轩\",\n            \"phone\": \"15129877128\",\n            \"gender\": \"先生\",\n            \"details\": \"西19-0625\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"许志轩\",\n            \"phone\": \"15129877128\",\n            \"gender\": \"女士\",\n            \"details\": \"社团办公室\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "创建新地址",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzQyNTU2NDQsImV4cCI6MTU3NDI1OTI0NCwibmJmIjoxNTc0MjU1NjQ0LCJqdGkiOiJsaVRvQ0JUR1RBaHIxa09mIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.0ukjKsTkqwy4imTkIYaQ08ircgwXF4z2IAuSwhR8JWs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"XuZhixuan\",\n\t\"phone\": \"15129877128\",\n\t\"gender\": \"f\",\n\t\"details\": \"西19-0625\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/addresses",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"addresses"
+							]
+						},
+						"description": "请求此接口创建新地址"
+					},
+					"response": []
+				},
+				{
+					"name": "获取地址详情",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzQyNTU2NDQsImV4cCI6MTU3NDI1OTI0NCwibmJmIjoxNTc0MjU1NjQ0LCJqdGkiOiJsaVRvQ0JUR1RBaHIxa09mIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.0ukjKsTkqwy4imTkIYaQ08ircgwXF4z2IAuSwhR8JWs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/addresses/2",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"addresses",
+								"2"
+							]
+						},
+						"description": "请求接口获取地址信息"
+					},
+					"response": []
+				},
+				{
+					"name": "删除地址",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzQyNTU2NDQsImV4cCI6MTU3NDI1OTI0NCwibmJmIjoxNTc0MjU1NjQ0LCJqdGkiOiJsaVRvQ0JUR1RBaHIxa09mIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.0ukjKsTkqwy4imTkIYaQ08ircgwXF4z2IAuSwhR8JWs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/addresses/3",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"addresses",
+								"3"
+							]
+						},
+						"description": "请求此接口删除地址"
+					},
+					"response": []
+				},
+				{
+					"name": "更新地址信息",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzQyNTU2NDQsImV4cCI6MTU3NDI1OTI0NCwibmJmIjoxNTc0MjU1NjQ0LCJqdGkiOiJsaVRvQ0JUR1RBaHIxa09mIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.0ukjKsTkqwy4imTkIYaQ08ircgwXF4z2IAuSwhR8JWs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"XuZhixuan\",\n\t\"phone\": \"18909115689\",\n\t\"gender\": \"f\",\n\t\"details\": \"西19-0625\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/addresses/2",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"addresses",
+								"2"
+							]
+						},
+						"description": "请求此接口更新地址信息"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

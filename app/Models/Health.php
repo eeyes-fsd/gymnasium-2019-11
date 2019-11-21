@@ -9,10 +9,16 @@ namespace App\Models;
  * @property int $id
  * @property int $user_id
  * @property User $user
- * @property int $age
+ * @property string $birthday
  * @property string $gender
  * @property float $weight
  * @property int $height
+ * @property int $exercise
+ * @property int $purpose
+ * @property float $fat
+ * @property float $salt
+ * @property string $work_time
+ * @property string $rest_time
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */

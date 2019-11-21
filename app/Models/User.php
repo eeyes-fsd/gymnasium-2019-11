@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -72,5 +74,30 @@ class User extends Authenticatable implements JWTSubject
     public function health()
     {
         return $this->hasOne('App\Models\Health', 'user_id');
+    }
+
+    /**
+     * @return Collection
+     */
+    public function reference()
+    {
+        $users_id = DB::table('shares')->where('uuid', $this->share_id)->get();
+
+        $users = new Collection();
+        foreach ($users_id as $id)
+        {
+            $users->add(self::find($id->user_id));
+        }
+
+        return $users;
+    }
+
+    /**
+     * @return User
+     */
+    public function referee()
+    {
+        $referee_id = DB::table('shares')->where('user_id', $this->id)->first();
+        return self::where('share_id', $referee_id->share_id)->first();
     }
 }

@@ -11,11 +11,12 @@ class HealthController extends Controller
 {
     /**
      * @return \Dingo\Api\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show()
     {
         $health = Auth::guard('api')->user()->health;
-        $this->authorize('show', $health);
+        if (!empty($health)) $this->authorize('show', $health);
         return $this->response->item($health, new HealthTransformer());
     }
 
@@ -33,7 +34,7 @@ class HealthController extends Controller
         }
 
         $attributes = $request->all();
-        $attributes['user_id'] = Auth::guard('api')->id;
+        $attributes['user_id'] = Auth::guard('api')->id();
 
         Health::create($attributes);
 

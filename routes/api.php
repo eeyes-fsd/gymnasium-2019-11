@@ -33,6 +33,9 @@ $api->version('v1', [
         ], function ($api) {
             /** 需要认证的接口 */
 
+            $api->post('phone_verify', 'HandlersController@verify_phone')
+                ->name('api.phone.verify');
+
             // 用户路由
             $api->get('user', 'UsersController@show')
                 ->name('api.user.show');
@@ -53,7 +56,7 @@ $api->version('v1', [
             $api->delete('addresses/{address}', 'AddressesController@destroy')
                 ->name('api.addresses.destroy');
 
-            // 身体信息接口
+            // 身体信息路由
             $api->get('health', 'HealthController@show')
                 ->name('api.health.show');
             $api->post('health', 'HealthController@store')
