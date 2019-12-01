@@ -81,7 +81,7 @@ class User extends Authenticatable implements JWTSubject
      */
     public function reference()
     {
-        $users_id = DB::table('shares')->where('uuid', $this->share_id)->get();
+        $users_id = DB::table('shares')->where('share_id', $this->share_id)->get();
 
         $users = new Collection();
         foreach ($users_id as $id)
@@ -97,7 +97,7 @@ class User extends Authenticatable implements JWTSubject
      */
     public function referee()
     {
-        $referee_id = DB::table('shares')->where('user_id', $this->id)->first();
+        if (!$referee_id = DB::table('shares')->where('user_id', $this->id)->first()) return null;
         return self::where('share_id', $referee_id->share_id)->first();
     }
 }

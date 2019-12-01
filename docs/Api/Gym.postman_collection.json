@@ -50,6 +50,11 @@
 									"key": "code",
 									"value": "SdqFwNSdmqa04kYLcpyRanvI3zRajAXxZikH",
 									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "15129877128",
+									"type": "text"
 								}
 							]
 						},
@@ -246,6 +251,120 @@
 								{
 									"key": "X-RateLimit-Reset",
 									"value": "1574256467"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"phone\": [\n        \"手机号码未验证\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "创建用户",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"sxxuz\",\n\t\"phone\": \"18991781060\",\n\t\"captcha\": \"151298\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/user",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"user"
+							]
+						},
+						"description": "请求此接口创建用户，用于分享"
+					},
+					"response": [
+						{
+							"name": "创建用户",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"sxxuz\",\n\t\"phone\": \"18991781060\",\n\t\"captcha\": \"151298\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/user",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 01 Dec 2019 09:50:03 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 01 Dec 2019 09:50:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.10"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1575193863"
 								}
 							],
 							"cookie": [],
@@ -862,6 +981,56 @@
 							]
 						},
 						"description": "请求此接口更新地址信息"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Helper",
+			"item": [
+				{
+					"name": "短信验证接口",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL2FwaVwvYXV0aG9yaXphdGlvbnNcL2N1cnJlbnQiLCJpYXQiOjE1NzQyNTEyMjIsImV4cCI6MTU3NDM0MTE1NSwibmJmIjoxNTc0MzM3NTU1LCJqdGkiOiJBaUFOZ0pFUnV4cTBFQjY0Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.mGtVCwcWgtB6nZDEwrj702fY-cteJh77e2bnsFW3i54",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"phone\": \"15129877128\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/phone_verify",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"phone_verify"
+							]
+						},
+						"description": "请求此接口以验证短信"
 					},
 					"response": []
 				}

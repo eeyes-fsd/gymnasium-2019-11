@@ -28,13 +28,15 @@ $api->version('v1', [
     ], function ($api) {
         /** 无需认证的接口 */
 
+        $api->post('user', 'UsersController@store')
+            ->name('api.user.store');
+        $api->post('phone_verify', 'HandlersController@verify_phone')
+            ->name('api.phone.verify');
+
         $api->group([
             'middleware' => 'api.auth',
         ], function ($api) {
             /** 需要认证的接口 */
-
-            $api->post('phone_verify', 'HandlersController@verify_phone')
-                ->name('api.phone.verify');
 
             // 用户路由
             $api->get('user', 'UsersController@show')

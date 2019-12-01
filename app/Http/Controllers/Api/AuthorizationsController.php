@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class AuthorizationsController extends Controller
@@ -16,6 +17,14 @@ class AuthorizationsController extends Controller
     public function socialStore(Request $request)
     {
         $code = $request->code;
+
+        $phone_user_exists = false;
+        $openid_user_exists = false;
+
+        if ($user = User::where('phone', $request->phone)->first()) $phone_user_exists = true;
+
+        dd($user);
+
         $miniProgram = \EasyWeChat::miniProgram();
         $response = $miniProgram->auth->session($code);
 
@@ -23,13 +32,31 @@ class AuthorizationsController extends Controller
             return $this->response->errorUnauthorized('code 错误');
         }
 
-        if (!$user = User::where('wx_openid', $response['openid'])->first()) {
-            $user = User::create([
-                'name' => 'wx_user_' . Str::random(8),
-                'password' => '*',
-                'wx_openid' => $response['openid'],
-                'wx_session_key' => $response['session_key'],
-            ]);
+        if ($user = User::where('wx_openid', $response['openid'])->first()) $openid_user_exists = true;
+
+        if ($phone_user_exists) {
+            if ($openid_user_exists) {
+                //Do Nothing
+            } else {
+                $user->update([
+                    'wx_openid' => $response['openid'],
+                    'wx_session_key' => $response['session_key']
+                ]);
+            }
+        } else {
+            if ($openid_user_exists) {
+                $user->update([
+                    'phone' => $request->phone,
+                ]);
+            } else {
+                $user = User::create([
+                    'name' => 'wx_user_' . Str::random(8),
+                    'phone' => $request->phone,
+                    'password' => '*',
+                    'wx_openid' => $response['openid'],
+                    'wx_session_key' => $response['session_key']
+                ]);
+            }
         }
 
         $token = Auth::guard('api')->fromUser($user);

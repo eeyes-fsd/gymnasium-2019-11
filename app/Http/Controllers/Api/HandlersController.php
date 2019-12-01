@@ -26,12 +26,9 @@ class HandlersController extends Controller
         ]);
 
         $captcha = random_int(10000, 99999);
-        try{
-            $handler->send($request->phone, $captcha, Auth::guard('api')->id());
-        } catch (NoGatewayAvailableException $e)
-        {
-            report($e);
-            return $this->response->errorInternal('短信发送失败');
+
+        if (!$handler->send($request->phone, $captcha, Auth::guard('api')->id() ?? 0)) {
+            return $this->response->errorInternal('短信发送失败：无可用网关');
         }
 
         return $this->response->created();
