@@ -23,8 +23,6 @@ class AuthorizationsController extends Controller
 
         if ($user = User::where('phone', $request->phone)->first()) $phone_user_exists = true;
 
-        dd($user);
-
         $miniProgram = \EasyWeChat::miniProgram();
         $response = $miniProgram->auth->session($code);
 
