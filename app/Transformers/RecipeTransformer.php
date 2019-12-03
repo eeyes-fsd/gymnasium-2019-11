@@ -33,11 +33,35 @@ class RecipeTransformer extends TransformerAbstract
                 return [
                     'id' => $recipe->id,
                     'name' => $recipe->name,
-                    'breakfast' => $recipe->breakfast,
-                    'lunch' => $recipe->lunch,
-                    'dinner' => $recipe->dinner,
                     'cover' => $recipe->cover,
-                    'step' => $recipe->step,
+                    'breakfast' => [
+                        'ingredients' => $recipe->breakfast->ingredients,
+                        'nutrient'=>[
+                            $recipe->breakfast->fat,
+                            $recipe->breakfast->protein,
+                            $recipe->breakfast->carbohydrate,
+                        ],
+                        'step'=>$recipe->step,
+                    ],
+                    'lunch' => [
+                        'ingredients' => $recipe->lunch->ingredients,
+                        'nutrient'=>[
+                            $recipe->lunch->fat,
+                            $recipe->lunch->protein,
+                            $recipe->lunch->carbohydrate,
+                        ],
+                        'step'=>$recipe->step,
+                    ],
+                    'dinner' => [
+                        'ingredients' => $recipe->dinner->ingredients,
+                        'nutrient'=>[
+                            $recipe->dinner->fat,
+                            $recipe->dinner->protein,
+                            $recipe->dinner->carbohydrate,
+                        ],
+                        'step'=>$recipe->step,
+                    ],
+
                 ];
             case 'recommend':
                 return[

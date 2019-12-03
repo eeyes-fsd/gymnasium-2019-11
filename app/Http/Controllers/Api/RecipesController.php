@@ -46,6 +46,6 @@ class RecipesController extends Controller
     }
     public function today_recipe()
     {
-
+        
     }
 }
