@@ -33,7 +33,6 @@ class RecipeTransformer extends TransformerAbstract
                 return [
                     'id' => $recipe->id,
                     'name' => $recipe->name,
-
                     'photo' => $recipe->photo,
                     'step' => $recipe->step,
                 ];
