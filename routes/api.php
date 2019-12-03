@@ -33,6 +33,12 @@ $api->version('v1', [
         $api->post('phone_verify', 'HandlersController@verify_phone')
             ->name('api.phone.verify');
 
+        //套餐路由
+        $api->get('recipes', 'RecipesController@index')
+            ->name('api.recipes.index');
+        $api->get('recipes/{recipe}', 'RecipesController@show')
+            ->name('api.recipes.show');
+
         $api->group([
             'middleware' => 'api.auth',
         ], function ($api) {
@@ -65,12 +71,6 @@ $api->version('v1', [
                 ->name('api.health.store');
             $api->put('health', 'HealthController@update')
                 ->name('api.health.update');
-
-            //套餐路由
-            $api->get('recipes', 'RecipesController@index')
-                ->name('api.recipes.index');
-            $api->get('recipes/{recipe}', 'RecipesController@show')
-                ->name('api.recipes.show');
         });
     });
 });

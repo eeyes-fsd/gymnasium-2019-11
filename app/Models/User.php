@@ -19,6 +19,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string $wx_session_key
  * @property Address $address
  * @property Health $health
+ * @property Collection $recipes
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */
@@ -99,5 +100,13 @@ class User extends Authenticatable implements JWTSubject
     {
         if (!$referee_id = DB::table('shares')->where('user_id', $this->id)->first()) return null;
         return self::where('share_id', $referee_id->share_id)->first();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function recipes()
+    {
+        return $this->belongsToMany('App\Models\Recipe');
     }
 }
