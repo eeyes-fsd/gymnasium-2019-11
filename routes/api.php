@@ -66,6 +66,7 @@ $api->version('v1', [
             $api->put('health', 'HealthController@update')
                 ->name('api.health.update');
 
+            //套餐路由
             $api->get('recipes', 'RecipesController@index')
                 ->name('api.recipes.index');
             $api->get('recipes/{recipe}', 'RecipesController@show')

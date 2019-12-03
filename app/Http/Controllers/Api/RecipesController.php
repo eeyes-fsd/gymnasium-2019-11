@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Transformers\RecipeTransformer;
-use Illuminate\Http\RecipeRequest;
+use Illuminate\Http\Request;
 use App\Models\Recipe;
 
 class RecipesController extends Controller
