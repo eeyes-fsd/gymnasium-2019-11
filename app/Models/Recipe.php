@@ -1,14 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Bright
- * Date: 2019/11/19
- * Time: 20:12
- */
 
 namespace App\Models;
 
-
+/**
+ * Class Recipe
+ * @package App\Models
+ */
 class Recipe extends Model
 {
     public function setRecipeAttribute($value)
@@ -18,5 +15,13 @@ class Recipe extends Model
     public function getRecipeAttribute()
     {
         return unserialize();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\Models\User')->withTimestamps();
     }
 }

@@ -13,13 +13,13 @@ class CreateHelperTables extends Migration
      */
     public function up()
     {
-        Schema::create('exercise', function (Blueprint $table) {
+        Schema::create('exercises', function (Blueprint $table) {
             $table->increments('id');
             $table->string('content');
             $table->timestamps();
         });
 
-        Schema::create('purpose', function (Blueprint $table) {
+        Schema::create('purposes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('content');
             $table->timestamps();
@@ -33,7 +33,7 @@ class CreateHelperTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exercise');
-        Schema::dropIfExists('purpose');
+        Schema::dropIfExists('exercises');
+        Schema::dropIfExists('purposes');
     }
 }
