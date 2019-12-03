@@ -65,6 +65,11 @@ $api->version('v1', [
                 ->name('api.health.store');
             $api->put('health', 'HealthController@update')
                 ->name('api.health.update');
+
+            $api->get('recipes', 'RecipesController@index')
+                ->name('api.recipes.index');
+            $api->get('recipes/{recipe}', 'RecipesController@show')
+                ->name('api.recipes.show');
         });
     });
 });
