@@ -18,4 +18,15 @@ class RecipesController extends Controller
         $recipes = Recipe::all();
         return $this->response->collection($recipes, new RecipeTransformer('collection'));
     }
+
+    public function new_recommend($request)
+    {
+        $recipes=Recipe::all()->reverse();
+        $recipes->forPage($request->page ?? 1,  $request->count ?? 20);
+        return $this->response->collection($recipes, new RecipeTransformer('recommend'));
+    }
+    public function today_recipe()
+    {
+
+    }
 }

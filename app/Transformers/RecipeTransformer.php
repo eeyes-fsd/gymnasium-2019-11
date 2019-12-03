@@ -33,10 +33,19 @@ class RecipeTransformer extends TransformerAbstract
                 return [
                     'id' => $recipe->id,
                     'name' => $recipe->name,
-
-                    'photo' => $recipe->photo,
+                    'breakfast' => $recipe->breakfast_id,
+                    'lunch' => $recipe->lunch_id,
+                    'dinner' => $recipe->dinner_id,
+                    'cover' => $recipe->cover,
                     'step' => $recipe->step,
                 ];
+            case 'recommend':
+                return[
+                    'id' => $recipe->id,
+                    'name' => $recipe->name,
+                    'picture' => $recipe->picture,
+                ];
+            case '':
         }
     }
 }

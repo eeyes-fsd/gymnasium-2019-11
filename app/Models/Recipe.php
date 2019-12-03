@@ -7,16 +7,20 @@
  */
 
 namespace App\Models;
-
+use Illuminate\Database\Eloquent\Model;
 
 class Recipe extends Model
 {
-    public function setRecipeAttribute($value)
+    public function breakfast($value)
     {
-        $this->attributes= serialize($value);
+        return $this->hasOne('App\Models\Meal','breakfast_id');
     }
-    public function getRecipeAttribute()
+    public function lunch($value)
     {
-        return unserialize();
+        return $this->hasOne('App\Models\Meal','lunch_id');
+    }
+    public function dinner($value)
+    {
+        return $this->hasOne('App\Models\Meal','dinner_id');
     }
 }
