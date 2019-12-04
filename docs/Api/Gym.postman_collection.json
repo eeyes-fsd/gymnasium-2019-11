@@ -52,8 +52,15 @@
 									"type": "text"
 								},
 								{
-									"key": "phone",
-									"value": "15129877128",
+									"key": "iv",
+									"value": "********************",
+									"description": "加密初始向量",
+									"type": "text"
+								},
+								{
+									"key": "encrypted_data",
+									"value": "********************",
+									"description": "加密数据",
 									"type": "text"
 								}
 							]
@@ -1033,6 +1040,499 @@
 						"description": "请求此接口以验证短信"
 					},
 					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Recipe",
+			"item": [
+				{
+					"name": "获取上新推荐",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/recipes/new?count=10&page=2",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"recipes",
+								"new"
+							],
+							"query": [
+								{
+									"key": "count",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "获取上新推荐",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_host}}/recipes/new?count=10&page=2",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"recipes",
+										"new"
+									],
+									"query": [
+										{
+											"key": "count",
+											"value": "10"
+										},
+										{
+											"key": "page",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 04 Dec 2019 05:06:51 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 04 Dec 2019 05:06:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.10"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "private, must-revalidate"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1575436071"
+								},
+								{
+									"key": "ETag",
+									"value": "\"f4d5a435c9516eec10be6822a5acf2a36438c88b\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"奥尔良鸡胸肉套餐\",\n            \"cover\": \"http://gym.eeyes.xyz/storage/public/cover_123.png\",\n            \"description\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "获取套餐详情",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzU0MzA3NDQsImV4cCI6MTU3NTQzNDM0NCwibmJmIjoxNTc1NDMwNzQ0LCJqdGkiOiJxSEx3SEVsalFRc3l0VnVxIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0._fniMxCOcRWCu7xnZbEUUu9U8SLWEmE2G6Fxwvwgks0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/recipes/{id}/details",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"recipes",
+								"{id}",
+								"details"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "获取套餐详情",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_host}}/recipes/1",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"recipes",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 04 Dec 2019 05:05:11 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 04 Dec 2019 05:05:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.10"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "private, must-revalidate"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1575435971"
+								},
+								{
+									"key": "ETag",
+									"value": "\"de086f1a09ecff17997f82b9146c3dc58df10bc6\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"奥尔良鸡胸肉套餐\",\n        \"cover\": \"http://gym.eeyes.xyz/storage/public/cover_123.png\",\n        \"breakfast\": {\n            \"ingredients\": [\n                {\n                    \"name\": \"牛肉\",\n                    \"amount\": 200\n                },\n                {\n                    \"name\": \"鸡肉\",\n                    \"amount\": 300\n                },\n                {\n                    \"name\": \"西兰花\",\n                    \"amount\": 500\n                }\n            ],\n            \"nutrient\": {\n                \"fat\": 20,\n                \"protein\": 30,\n                \"carbohydrate\": 10\n            },\n            \"step\": \"<html></html>\"\n        },\n        \"lunch\": {\n            \"ingredients\": [\n                {\n                    \"name\": \"牛肉\",\n                    \"amount\": 200\n                },\n                {\n                    \"name\": \"鸡肉\",\n                    \"amount\": 300\n                },\n                {\n                    \"name\": \"西兰花\",\n                    \"amount\": 500\n                }\n            ],\n            \"nutrient\": {\n                \"fat\": 20,\n                \"protein\": 30,\n                \"carbohydrate\": 10\n            },\n            \"step\": \"<html></html>\"\n        },\n        \"dinner\": {\n            \"ingredients\": [\n                {\n                    \"name\": \"牛肉\",\n                    \"amount\": 200\n                },\n                {\n                    \"name\": \"鸡肉\",\n                    \"amount\": 300\n                },\n                {\n                    \"name\": \"西兰花\",\n                    \"amount\": 500\n                }\n            ],\n            \"nutrient\": {\n                \"fat\": 20,\n                \"protein\": 30,\n                \"carbohydrate\": 10\n            },\n            \"step\": \"<html></html>\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "获取已购套餐",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzU0MzY3MzQsImV4cCI6MTU3NTQ0MDMzNCwibmJmIjoxNTc1NDM2NzM0LCJqdGkiOiJsaVRhMmwwVUVNREpxOGFiIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.uz5uLAI1N5qKrJWku8rsCrJOA8lVasYN0qMixDCLuyY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/recipes/bought",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"recipes",
+								"bought"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "获取已购套餐",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_host}}/recipes/bought",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"recipes",
+										"bought"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 04 Dec 2019 05:19:41 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 04 Dec 2019 05:19:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.10"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "private, must-revalidate"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1575436841"
+								},
+								{
+									"key": "ETag",
+									"value": "\"f4d5a435c9516eec10be6822a5acf2a36438c88b\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"奥尔良鸡胸肉套餐\",\n            \"cover\": \"http://gym.eeyes.xyz/storage/public/cover_123.png\",\n            \"description\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "获取全部套餐",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/recipes",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"recipes"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "获取全部套餐",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_host}}/recipes",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"recipes"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 04 Dec 2019 05:20:42 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 04 Dec 2019 05:20:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.10"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "private, must-revalidate"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1575436902"
+								},
+								{
+									"key": "ETag",
+									"value": "\"f4d5a435c9516eec10be6822a5acf2a36438c88b\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"奥尔良鸡胸肉套餐\",\n            \"cover\": \"http://gym.eeyes.xyz/storage/public/cover_123.png\",\n            \"description\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "获取今日推荐",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzU0NDg5MDcsImV4cCI6MTU3NTQ1MjUwNywibmJmIjoxNTc1NDQ4OTA3LCJqdGkiOiJBdVVYWHJBR3RiZHNTZ1ByIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.rzJgqKYQp7N8g28H8bTgkoEGC1p-cxsI1iZ5FNJjKpk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/recipes/today",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"recipes",
+								"today"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "获取今日推荐",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_host}}/recipes/today",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"recipes",
+										"today"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 04 Dec 2019 05:36:16 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 04 Dec 2019 05:36:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.10"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "private, must-revalidate"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1575437816"
+								},
+								{
+									"key": "ETag",
+									"value": "\"f4d5a435c9516eec10be6822a5acf2a36438c88b\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"奥尔良鸡胸肉套餐\",\n            \"cover\": \"http://gym.eeyes.xyz/storage/public/cover_123.png\",\n            \"description\": null\n        }\n    ]\n}"
+						}
+					]
 				}
 			],
 			"protocolProfileBehavior": {}

@@ -107,6 +107,6 @@ class User extends Authenticatable implements JWTSubject
      */
     public function recipes()
     {
-        return $this->belongsToMany('App\Models\Recipe');
+        return $this->belongsToMany('App\Models\Recipe')->withTimestamps()->withPivot(['id']);
     }
 }
