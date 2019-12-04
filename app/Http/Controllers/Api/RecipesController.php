@@ -19,11 +19,13 @@ class RecipesController extends Controller
     }
 
     /**
+     * @param $class
+     * @param Request $request
      * @return mixed
      */
-    public function index(Request $request)
+    public function index(Request $request, $class='all')
     {
-        switch ($request->class)
+        switch ($class)
         {
             case 'bought':
                 if (!Auth::guard('api')->check()) return $this->response->errorUnauthorized("未登录，无法查看");
@@ -33,19 +35,17 @@ class RecipesController extends Controller
             case 'all':
                 $recipes = Recipe::all();
                 break;
+
+            case 'new':
+                $recipes=Recipe::all()->reverse();
+                $recipes->forPage($request->page ?? 1,  $request->count ?? 20);
+
+            case 'today':
+                //TODO 每日推荐
         }
 
         return $this->response->collection($recipes, new RecipeTransformer('collection'));
-    }
 
-    public function new_recommend($request)
-    {
-        $recipes=Recipe::all()->reverse();
-        $recipes->forPage($request->page ?? 1,  $request->count ?? 20);
-        return $this->response->collection($recipes, new RecipeTransformer('recommend'));
-    }
-    public function today_recipe()
-    {
-        
+
     }
 }

@@ -34,9 +34,9 @@ $api->version('v1', [
             ->name('api.phone.verify');
 
         //套餐路由
-        $api->get('recipes', 'RecipesController@index')
+        $api->get('recipes/{type?}', 'RecipesController@index')
             ->name('api.recipes.index');
-        $api->get('recipes/{recipe}', 'RecipesController@show')
+        $api->get('recipes/{recipe}/details', 'RecipesController@show')
             ->name('api.recipes.show');
 
         $api->group([

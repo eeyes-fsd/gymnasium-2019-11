@@ -16,13 +16,16 @@ class CreateHelperTables extends Migration
         Schema::create('exercises', function (Blueprint $table) {
             $table->increments('id');
             $table->string('content');
-            $table->timestamps();
         });
 
         Schema::create('purposes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('content');
-            $table->timestamps();
+        });
+
+        Schema::create('ingredients', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name');
         });
     }
 
@@ -35,5 +38,6 @@ class CreateHelperTables extends Migration
     {
         Schema::dropIfExists('exercises');
         Schema::dropIfExists('purposes');
+        Schema::dropIfExists('ingredients');
     }
 }

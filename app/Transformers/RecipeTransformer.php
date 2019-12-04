@@ -1,13 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Bright
- * Date: 2019/11/19
- * Time: 21:06
- */
 
 namespace App\Transformers;
 
+use App\Models\Recipe;
+use League\Fractal\TransformerAbstract;
 
 class RecipeTransformer extends TransformerAbstract
 {
@@ -25,7 +21,7 @@ class RecipeTransformer extends TransformerAbstract
                 return [
                     'id' => $recipe->id,
                     'name' => $recipe->name,
-                    'picture' => $recipe->picture,
+                    'cover' => $recipe->cover,
                     'description' => $recipe->description,
                 ];
 
@@ -36,40 +32,39 @@ class RecipeTransformer extends TransformerAbstract
                     'cover' => $recipe->cover,
                     'breakfast' => [
                         'ingredients' => $recipe->breakfast->ingredients,
-                        'nutrient'=>[
-                            $recipe->breakfast->fat,
-                            $recipe->breakfast->protein,
-                            $recipe->breakfast->carbohydrate,
+                        'nutrient' =>[
+                            'fat' => $recipe->breakfast->fat,
+                            'protein' => $recipe->breakfast->protein,
+                            'carbohydrate' => $recipe->breakfast->carbohydrate,
                         ],
-                        'step'=>$recipe->step,
+                        'step' => $recipe->breakfast->step,
                     ],
                     'lunch' => [
                         'ingredients' => $recipe->lunch->ingredients,
-                        'nutrient'=>[
-                            $recipe->lunch->fat,
-                            $recipe->lunch->protein,
-                            $recipe->lunch->carbohydrate,
+                        'nutrient' =>[
+                            'fat' => $recipe->breakfast->fat,
+                            'protein' => $recipe->breakfast->protein,
+                            'carbohydrate' => $recipe->breakfast->carbohydrate,
                         ],
-                        'step'=>$recipe->step,
+                        'step' => $recipe->lunch->step,
                     ],
                     'dinner' => [
                         'ingredients' => $recipe->dinner->ingredients,
-                        'nutrient'=>[
-                            $recipe->dinner->fat,
-                            $recipe->dinner->protein,
-                            $recipe->dinner->carbohydrate,
+                        'nutrient' =>[
+                            'fat' => $recipe->breakfast->fat,
+                            'protein' => $recipe->breakfast->protein,
+                            'carbohydrate' => $recipe->breakfast->carbohydrate,
                         ],
-                        'step'=>$recipe->step,
+                        'step' => $recipe->dinner->step,
                     ],
-
                 ];
-            case 'recommend':
-                return[
+
+            default:
+                return [
                     'id' => $recipe->id,
                     'name' => $recipe->name,
-                    'picture' => $recipe->picture,
+                    'cover' => $recipe->cover,
                 ];
-            case '':
         }
     }
 }

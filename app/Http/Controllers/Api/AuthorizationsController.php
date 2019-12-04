@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class AuthorizationsController extends Controller
 {
@@ -21,8 +20,6 @@ class AuthorizationsController extends Controller
         $phone_user_exists = false;
         $openid_user_exists = false;
 
-        if ($user = User::where('phone', $request->phone)->first()) $phone_user_exists = true;
-
         $miniProgram = \EasyWeChat::miniProgram();
         $response = $miniProgram->auth->session($code);
 
@@ -30,12 +27,15 @@ class AuthorizationsController extends Controller
             return $this->response->errorUnauthorized('code 错误');
         }
 
+        $phone = $miniProgram->encryptor->decryptData($response['session_key'], $request->iv, $request->encrypted_data);
+        $phone = $phone['phoneNumber'];
+
+        if ($user = User::where('phone', $phone)->first()) $phone_user_exists = true;
+
         if ($user = User::where('wx_openid', $response['openid'])->first()) $openid_user_exists = true;
 
         if ($phone_user_exists) {
-            if ($openid_user_exists) {
-                //Do Nothing
-            } else {
+            if (!$openid_user_exists) {
                 $user->update([
                     'wx_openid' => $response['openid'],
                     'wx_session_key' => $response['session_key']
@@ -44,12 +44,12 @@ class AuthorizationsController extends Controller
         } else {
             if ($openid_user_exists) {
                 $user->update([
-                    'phone' => $request->phone,
+                    'phone' => $phone,
                 ]);
             } else {
                 $user = User::create([
                     'name' => 'wx_user_' . Str::random(8),
-                    'phone' => $request->phone,
+                    'phone' => $phone,
                     'password' => '*',
                     'wx_openid' => $response['openid'],
                     'wx_session_key' => $response['session_key']
