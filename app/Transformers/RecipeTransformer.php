@@ -32,6 +32,7 @@ class RecipeTransformer extends TransformerAbstract
                     'cover' => $recipe->cover,
                     'breakfast' => [
                         'ingredients' => $recipe->breakfast->ingredients,
+                        'photo' => $recipe->breakfast->photo,
                         'nutrient' =>[
                             'fat' => $recipe->breakfast->fat,
                             'protein' => $recipe->breakfast->protein,
@@ -41,6 +42,7 @@ class RecipeTransformer extends TransformerAbstract
                     ],
                     'lunch' => [
                         'ingredients' => $recipe->lunch->ingredients,
+                        'photo' => $recipe->lunch->photo,
                         'nutrient' =>[
                             'fat' => $recipe->breakfast->fat,
                             'protein' => $recipe->breakfast->protein,
@@ -50,6 +52,7 @@ class RecipeTransformer extends TransformerAbstract
                     ],
                     'dinner' => [
                         'ingredients' => $recipe->dinner->ingredients,
+                        'photo' => $recipe->dinner->photo,
                         'nutrient' =>[
                             'fat' => $recipe->breakfast->fat,
                             'protein' => $recipe->breakfast->protein,

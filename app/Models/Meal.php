@@ -7,6 +7,7 @@ namespace App\Models;
  * @package App\Models
  *
  * @property int $id
+ * @property string $photo
  * @property array $ingredients
  * @property int $fat
  * @property int $carbohydrate

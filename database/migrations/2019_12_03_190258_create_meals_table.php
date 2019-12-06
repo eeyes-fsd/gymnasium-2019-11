@@ -15,6 +15,7 @@ class CreateMealsTable extends Migration
     {
         Schema::create('meals', function (Blueprint $table) {
             $table->bigIncrements('id')->comment('ID');
+            $table->string('photo')->comment('图片链接');
             $table->longText('ingredients')->comment('食材');
             $table->integer('carbohydrate')->nullable()->comment('碳水化合物');
             $table->integer('fat')->nullable()->comment('脂肪');
