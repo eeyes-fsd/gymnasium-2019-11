@@ -19,6 +19,7 @@ namespace App\Models;
  * @property float $salt
  * @property string $work_time
  * @property string $rest_time
+ * @property array $intake
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */
@@ -32,5 +33,22 @@ class Health extends Model
     public function user()
     {
         return $this->belongsTo('App\Models\User', 'user_id');
+    }
+
+    /**
+     * @param $intake
+     * @return mixed
+     */
+    public function getIntakeAttribute($intake)
+    {
+        return unserialize($intake);
+    }
+
+    /**
+     * @param $intake
+     */
+    public function setIntakeAttribute($intake)
+    {
+        $this->attributes['intake'] = serialize($intake);
     }
 }

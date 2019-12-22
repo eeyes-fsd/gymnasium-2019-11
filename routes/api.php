@@ -31,6 +31,12 @@ $api->version('v1', [
             ->name('api.user.store');
         $api->post('phone_verify', 'HandlersController@verify_phone')
             ->name('api.phone.verify');
+        $api->get('exercises', function () {
+            return \Illuminate\Support\Facades\DB::table('exercises')->get();
+        });
+        $api->get('purposes', function () {
+            return \Illuminate\Support\Facades\DB::table('purposes')->get();
+        });
 
         //套餐路由
         $api->get('recipes/{type?}', 'RecipesController@index')
@@ -64,7 +70,7 @@ $api->version('v1', [
                 ->name('api.addresses.destroy');
 
             // 身体信息路由
-            $api->get('health', 'HealthController@show')
+            $api->get('health/{detail?}', 'HealthController@show')
                 ->name('api.health.show');
             $api->post('health', 'HealthController@store')
                 ->name('api.health.store');

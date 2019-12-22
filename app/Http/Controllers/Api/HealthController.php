@@ -7,22 +7,34 @@ use App\Http\Requests\Api\HealthRequest;
 use App\Models\Health;
 use App\Transformers\HealthTransformer;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class HealthController extends Controller
 {
     /**
-     * @return \Dingo\Api\Http\Response
+     * @param $detail
+     * @return \Dingo\Api\Http\Response | void
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function show()
+    public function show($detail)
     {
-        $health = Auth::guard('api')->user()->health;
-        if (!empty($health)) $this->authorize('show', $health);
-        return $this->response->item($health, new HealthTransformer());
+        switch ($detail) {
+            case 'intake':
+                $intake = Auth::user()->health->intake;
+                if (!$intake) {
+                    return $this->response->errorNotFound('还未设置身体信息');
+                }
+                return $this->responseParsingIntake($intake);
+            default:
+                $health = Auth::guard('api')->user()->health;
+                if (!empty($health)) $this->authorize('show', $health); else return $this->response->errorNotFound('还未设置身体信息');
+                return $this->response->item($health, new HealthTransformer());
+        }
     }
 
     /**
      * @param HealthRequest $request
+     * @param AlgorithmHandler $algorithm
      * @return \Dingo\Api\Http\Response|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -38,6 +50,7 @@ class HealthController extends Controller
         $attributes['user_id'] = Auth::guard('api')->id();
 
         $health = Health::create($attributes);
+
         if (!$intake = $algorithm->calculate_intake($health)) {
             return $this->response->array([
                 'code' => 422,
@@ -45,7 +58,14 @@ class HealthController extends Controller
             ])->setStatusCode(422);
         }
 
-        return $this->response->created(app('Dingo\Api\Routing\UrlGenerator')->version('v1')->route('api.health.show'))->setContent($intake);
+        if (count($intake['ratio']) > 1) {
+            Cache::put('user:' . Auth::id() . ':intake:lt', 0);
+        }
+
+        $health->update(['intake' => $intake]);
+
+
+        return $this->responseParsingIntake($intake)->setStatusCode(201);
     }
 
     /**
@@ -67,6 +87,36 @@ class HealthController extends Controller
             ])->setStatusCode(422);
         }
 
-        return $this->response->array($intake);
+        if (count($intake['ratio']) > 1) {
+            Cache::put('user:' . Auth::id() . ':intake_lt', 0);
+        }
+
+        $health->update(['intake' => $intake]);
+
+
+        return $this->responseParsingIntake($intake);
+    }
+
+    protected function responseParsingIntake(array $intake)
+    {
+        if (count($intake['ratio']) > 1) {
+            $live_time = Cache::get('user:' . Auth::id() . ':intake_lt');
+            foreach ($intake['ratio'] as $ratio) {
+                if ($live_time -= $ratio['ttl'] < 0) {
+                    if ($ratio['ttl'] === null) {
+                        Cache::forget('user:' . Auth::id() . ':intake_lt');
+                    }
+                    break;
+                }
+            }
+        } else {
+            $ratio = $intake['ratio'][0];
+        }
+
+        return $this->response->array([
+            'energy' => $intake['energy'],
+            'ratio' => $ratio[0] ?? null,
+            'bmr_warn' => $intake['bmr_warn']
+        ]);
     }
 }

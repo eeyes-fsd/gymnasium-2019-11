@@ -623,7 +623,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzcwMDk2NjcsImV4cCI6MTU3NzAxMzI2NywibmJmIjoxNTc3MDA5NjY3LCJqdGkiOiJ0Y09FSGhQcE43NHdvdm0xIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.fa6vuF-EXBbYyZ7pgiADyKkg_Su_w90zExhrsk0q2NM",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzcwNTA1MjAsImV4cCI6MTU3NzA1NDEyMCwibmJmIjoxNTc3MDUwNTIwLCJqdGkiOiJqZkEwdUY3b09IZEl4SWJEIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.k94gCZQMe1CPQhBGkNz7OJyOgi8yZHnKPj7JknrE2pw",
 									"type": "string"
 								}
 							]
@@ -639,7 +639,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"gender\": \"m\",\n\t\"birthday\": \"2000-01-14\",\n\t\"weight\": 75.2,\n\t\"height\": 175,\n\t\"exercise\": 1,\n\t\"purpose\": 5,\n\t\"fat\": 30,\n\t\"salt\": 0.2,\n\t\"work_time\": \"10:00\",\n\t\"rest_time\": \"23:00\"\n}",
+							"raw": "{\n\t\"gender\": \"m\",\n\t\"birthday\": \"2000-01-14\",\n\t\"weight\": 75.2,\n\t\"height\": 175,\n\t\"exercise\": 1,\n\t\"purpose\": 3,\n\t\"fat\": null,\n\t\"salt\": null,\n\t\"work_time\": \"10:00\",\n\t\"rest_time\": \"23:00\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -666,96 +666,13 @@
 									{
 										"key": "Content-Type",
 										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
+										"type": "text",
+										"value": "application/json"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"gender\": \"m\",\n\t\"birthday\": \"2000-01-14\",\n\t\"weight\": 75.2,\n\t\"height\": 175,\n\t\"exercise\": 1,\n\t\"purpose\": 1,\n\t\"fat\": 0.3,\n\t\"salt\": 0.2,\n\t\"work_time\": \"10:00\",\n\t\"rest_time\": \"23:00\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{api_host}}/health",
-									"host": [
-										"{{api_host}}"
-									],
-									"path": [
-										"health"
-									]
-								}
-							},
-							"status": "No Content",
-							"code": 204,
-							"_postman_previewlanguage": "plain",
-							"header": [
-								{
-									"key": "Host",
-									"value": "localhost"
-								},
-								{
-									"key": "Date",
-									"value": "Wed, 20 Nov 2019 12:17:27 GMT"
-								},
-								{
-									"key": "Date",
-									"value": "Wed, 20 Nov 2019 12:17:27 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "close"
-								},
-								{
-									"key": "X-Powered-By",
-									"value": "PHP/7.3.10"
-								},
-								{
-									"key": "Cache-Control",
-									"value": "private, must-revalidate"
-								},
-								{
-									"key": "X-RateLimit-Limit",
-									"value": "60"
-								},
-								{
-									"key": "X-RateLimit-Remaining",
-									"value": "58"
-								},
-								{
-									"key": "X-RateLimit-Reset",
-									"value": "1574252283"
-								},
-								{
-									"key": "Content-Type",
-									"value": ""
-								},
-								{
-									"key": "ETag",
-									"value": "\"da39a3ee5e6b4b0d3255bfef95601890afd80709\""
-								}
-							],
-							"cookie": [],
-							"body": null
-						},
-						{
-							"name": "更新健康情况",
-							"originalRequest": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n\t\"gender\": \"m\",\n\t\"birthday\": \"2000-01-14\",\n\t\"weight\": 75.2,\n\t\"height\": 175,\n\t\"exercise\": 1,\n\t\"purpose\": 5,\n\t\"fat\": 30,\n\t\"salt\": 0.2,\n\t\"work_time\": \"10:00\",\n\t\"rest_time\": \"23:00\"\n}",
+									"raw": "{\n\t\"gender\": \"m\",\n\t\"birthday\": \"2000-01-14\",\n\t\"weight\": 75.2,\n\t\"height\": 175,\n\t\"exercise\": 1,\n\t\"purpose\": 3,\n\t\"fat\": null,\n\t\"salt\": null,\n\t\"work_time\": \"10:00\",\n\t\"rest_time\": \"23:00\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -782,11 +699,11 @@
 								},
 								{
 									"key": "Date",
-									"value": "Sun, 22 Dec 2019 10:59:32 GMT"
+									"value": "Sun, 22 Dec 2019 21:53:20 GMT"
 								},
 								{
 									"key": "Date",
-									"value": "Sun, 22 Dec 2019 10:59:32 GMT"
+									"value": "Sun, 22 Dec 2019 21:53:20 GMT"
 								},
 								{
 									"key": "Connection",
@@ -794,7 +711,7 @@
 								},
 								{
 									"key": "X-Powered-By",
-									"value": "PHP/7.4.1"
+									"value": "PHP/7.3.10"
 								},
 								{
 									"key": "Cache-Control",
@@ -810,19 +727,117 @@
 								},
 								{
 									"key": "X-RateLimit-Remaining",
-									"value": "58"
+									"value": "57"
 								},
 								{
 									"key": "X-RateLimit-Reset",
-									"value": "1577012382"
+									"value": "1577051614"
 								},
 								{
 									"key": "ETag",
-									"value": "\"e610e5ef94867593395304730c1f39c1c66f1f67\""
+									"value": "\"c1be82af1e1cdc049bc961e0a05ad01afc6b72d8\""
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"metabolism\": 1760.946,\n    \"intake\": 23,\n    \"ratio\": \"1:3:1(4) 2:2:1(4) 2:1:1\",\n    \"bmr_warn\": true\n}"
+							"body": "{\n    \"energy\": 3008,\n    \"ratio\": \"2:1:1\",\n    \"bmr_warn\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "获取能量摄入",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzcwNTA1MjAsImV4cCI6MTU3NzA1NDEyMCwibmJmIjoxNTc3MDUwNTIwLCJqdGkiOiJqZkEwdUY3b09IZEl4SWJEIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.k94gCZQMe1CPQhBGkNz7OJyOgi8yZHnKPj7JknrE2pw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/health/intake",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"health",
+								"intake"
+							]
+						},
+						"description": "获取当日能量摄入与比例数据"
+					},
+					"response": [
+						{
+							"name": "获取能量摄入",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_host}}/health/intake",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"health",
+										"intake"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Dec 2019 21:54:57 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Dec 2019 21:54:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.10"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "private, must-revalidate"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1577051757"
+								},
+								{
+									"key": "ETag",
+									"value": "\"805fc6983c16c3a7e3d019717d718b925f951177\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"energy\": 3008,\n    \"ratio\": \"2:1:1\",\n    \"bmr_warn\": false\n}"
 						}
 					]
 				}

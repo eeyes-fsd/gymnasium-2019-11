@@ -26,6 +26,7 @@ class CreateHealthsTable extends Migration
             $table->float('salt')->comment('骨盐率')->nullable();
             $table->time('work_time')->comment('作息时间开始')->nullable();
             $table->time('rest_time')->comment('作息时间结束')->nullable();
+            $table->text('intake')->comment('饮食控制计划')->nullable();
             $table->timestamps();
         });
     }

@@ -45,7 +45,7 @@ class RecipesController extends Controller
 
             case 'today':
                 if (!Auth::guard('api')->check()) return $this->response->errorUnauthorized("未登录，无法查看");
-                if (!$recipes = Cache::get('user:' . Auth::guard('api')->user()->id . ':today')) return $this->response->errorNotFound();
+                if (!$recipes = Cache::get('user:' . Auth::guard('api')->user()->id . ':today')) return $this->response->noContent();
                 $recipes = Recipe::where('id', $recipes)->get();
                 break;
 
