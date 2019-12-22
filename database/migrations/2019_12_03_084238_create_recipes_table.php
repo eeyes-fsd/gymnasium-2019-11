@@ -15,6 +15,7 @@ class CreateRecipesTable extends Migration
     {
         Schema::create('recipes', function (Blueprint $table) {
             $table->bigIncrements('id')->comment('主键ID');
+            $table->integer('price')->comment('套餐价格（分）');
             $table->string('name')->comment('食谱名');
             $table->string('cover')->comment('封面图');
             $table->string('description')->nullable()->comment('描述');

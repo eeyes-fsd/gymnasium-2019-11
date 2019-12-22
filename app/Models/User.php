@@ -17,6 +17,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string $phone
  * @property string $wx_openid
  * @property string $wx_session_key
+ * @property string $share_id
  * @property Address $address
  * @property Health $health
  * @property Collection $recipes
@@ -107,6 +108,11 @@ class User extends Authenticatable implements JWTSubject
      */
     public function recipes()
     {
-        return $this->belongsToMany('App\Models\Recipe')->withTimestamps()->withPivot(['id']);
+        return $this->belongsToMany('App\Models\Recipe')->withTimestamps()->withPivot(['id', 'status']);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany('App\Models\Order', 'user_id');
     }
 }

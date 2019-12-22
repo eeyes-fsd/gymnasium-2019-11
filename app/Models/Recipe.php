@@ -9,6 +9,7 @@ namespace App\Models;
  * @property int $id
  * @property string $name
  * @property string $cover
+ * @property int $price
  * @property string | null $description
  * @property int $breakfast_id
  * @property int $lunch_id
@@ -51,6 +52,6 @@ class Recipe extends Model
      */
     public function users()
     {
-        return $this->belongsToMany('App\Models\User')->withTimestamps()->withPivot(['id']);
+        return $this->belongsToMany('App\Models\User')->withTimestamps()->withPivot(['id', 'status']);
     }
 }

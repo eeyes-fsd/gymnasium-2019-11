@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\User;
+use EasyWeChat\Kernel\Exceptions\DecryptException;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,16 +25,27 @@ class AuthorizationsController extends Controller
         $miniProgram = \EasyWeChat::miniProgram();
         $response = $miniProgram->auth->session($code);
 
-        if (isset($data['errcode'])) {
+        if (isset($response['errcode'])) {
             return $this->response->errorUnauthorized('code 错误');
         }
 
-        $phone = $miniProgram->encryptor->decryptData($response['session_key'], $request->iv, $request->encrypted_data);
+        $session_key = $response['session_key'];
+
+        if ($user = User::where('wx_openid', $response['openid'])->first()) {
+            $openid_user_exists = true;
+            $user->update([
+                'wx_session_key' => $session_key
+            ]);
+        }
+
+        try {
+            $phone = $miniProgram->encryptor->decryptData($response['session_key'], $request->iv, $request->encrypted_data);
+        } catch (DecryptException $e) {
+            Log::error('数据解密错误', []);
+        }
         $phone = $phone['phoneNumber'];
 
         if ($user = User::where('phone', $phone)->first()) $phone_user_exists = true;
-
-        if ($user = User::where('wx_openid', $response['openid'])->first()) $openid_user_exists = true;
 
         if ($phone_user_exists) {
             if (!$openid_user_exists) {

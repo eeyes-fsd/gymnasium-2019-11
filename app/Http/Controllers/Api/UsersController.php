@@ -26,6 +26,7 @@ class UsersController extends Controller
 
     /**
      * @param UserRequest $request
+     * @param CaptchaHandler $handler
      * @return \Dingo\Api\Http\Response
      */
     public function store(UserRequest $request, CaptchaHandler $handler)

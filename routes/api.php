@@ -27,7 +27,6 @@ $api->version('v1', [
         'expires' => config('api.throttling.access.expires')
     ], function ($api) {
         /** 无需认证的接口 */
-
         $api->post('user', 'UsersController@store')
             ->name('api.user.store');
         $api->post('phone_verify', 'HandlersController@verify_phone')
@@ -71,6 +70,16 @@ $api->version('v1', [
                 ->name('api.health.store');
             $api->put('health', 'HealthController@update')
                 ->name('api.health.update');
+
+            //订单接口
+            $api->get('orders', 'OrdersController@index')
+                ->name('api.orders.index');
+            $api->get('orders/{order}', 'OrdersController@show')
+                ->name('api.orders.show');
+            $api->post('orders', 'OrdersController@store')
+                ->name('api.orders.store');
+            $api->post('order/{order}/callback', 'OrdersController@callback')
+                ->name('api.orders.callback');
         });
     });
 });

@@ -159,8 +159,8 @@
 							{
 								"key": "Content-Type",
 								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"value": "application/json"
 							}
 						],
 						"body": {
@@ -273,8 +273,8 @@
 							{
 								"key": "Content-Type",
 								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"value": "application/json"
 							}
 						],
 						"body": {
@@ -393,7 +393,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzQyNTEyMjIsImV4cCI6MTU3NDI1NDgyMiwibmJmIjoxNTc0MjUxMjIyLCJqdGkiOiJLbExYU1NKWGZtNlZHUTl2Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Rug2WQ8sgAVV8bvPPe4L0RTUowKprkwE6xCprM8E-JU",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzcwMDk2NjcsImV4cCI6MTU3NzAxMzI2NywibmJmIjoxNTc3MDA5NjY3LCJqdGkiOiJ0Y09FSGhQcE43NHdvdm0xIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.fa6vuF-EXBbYyZ7pgiADyKkg_Su_w90zExhrsk0q2NM",
 									"type": "string"
 								}
 							]
@@ -623,7 +623,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzQyNTEyMjIsImV4cCI6MTU3NDI1NDgyMiwibmJmIjoxNTc0MjUxMjIyLCJqdGkiOiJLbExYU1NKWGZtNlZHUTl2Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Rug2WQ8sgAVV8bvPPe4L0RTUowKprkwE6xCprM8E-JU",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzcwMDk2NjcsImV4cCI6MTU3NzAxMzI2NywibmJmIjoxNTc3MDA5NjY3LCJqdGkiOiJ0Y09FSGhQcE43NHdvdm0xIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.fa6vuF-EXBbYyZ7pgiADyKkg_Su_w90zExhrsk0q2NM",
 									"type": "string"
 								}
 							]
@@ -633,13 +633,13 @@
 							{
 								"key": "Content-Type",
 								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"gender\": \"m\",\n\t\"birthday\": \"2000-01-14\",\n\t\"weight\": 75.2,\n\t\"height\": 175,\n\t\"exercise\": 1,\n\t\"purpose\": 1,\n\t\"fat\": 0.3,\n\t\"salt\": 0.2,\n\t\"work_time\": \"10:00\",\n\t\"rest_time\": \"23:00\"\n}",
+							"raw": "{\n\t\"gender\": \"m\",\n\t\"birthday\": \"2000-01-14\",\n\t\"weight\": 75.2,\n\t\"height\": 175,\n\t\"exercise\": 1,\n\t\"purpose\": 5,\n\t\"fat\": 30,\n\t\"salt\": 0.2,\n\t\"work_time\": \"10:00\",\n\t\"rest_time\": \"23:00\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -740,6 +740,89 @@
 							],
 							"cookie": [],
 							"body": null
+						},
+						{
+							"name": "更新健康情况",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"gender\": \"m\",\n\t\"birthday\": \"2000-01-14\",\n\t\"weight\": 75.2,\n\t\"height\": 175,\n\t\"exercise\": 1,\n\t\"purpose\": 5,\n\t\"fat\": 30,\n\t\"salt\": 0.2,\n\t\"work_time\": \"10:00\",\n\t\"rest_time\": \"23:00\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/health",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"health"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Dec 2019 10:59:32 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Dec 2019 10:59:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "private, must-revalidate"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1577012382"
+								},
+								{
+									"key": "ETag",
+									"value": "\"e610e5ef94867593395304730c1f39c1c66f1f67\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"metabolism\": 1760.946,\n    \"intake\": 23,\n    \"ratio\": \"1:3:1(4) 2:2:1(4) 2:1:1\",\n    \"bmr_warn\": true\n}"
 						}
 					]
 				}
@@ -862,8 +945,8 @@
 							{
 								"key": "Content-Type",
 								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"value": "application/json"
 							}
 						],
 						"body": {
@@ -964,8 +1047,8 @@
 							{
 								"key": "Content-Type",
 								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"value": "application/json"
 							}
 						],
 						"body": {
@@ -1015,8 +1098,8 @@
 							{
 								"key": "Content-Type",
 								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"value": "application/json"
 							}
 						],
 						"body": {
@@ -1533,6 +1616,180 @@
 							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"奥尔良鸡胸肉套餐\",\n            \"cover\": \"http://gym.eeyes.xyz/storage/public/cover_123.png\",\n            \"description\": null\n        }\n    ]\n}"
 						}
 					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "发起支付",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzcwMTk3NzksImV4cCI6MTU3NzAyMzM3OSwibmJmIjoxNTc3MDE5Nzc5LCJqdGkiOiJHT1RRN0tERkZmaWdReTl3Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Bg8mb2JRy1Ofito11W7ivIVhFFBGD425_Z95Wc57SkI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"recipes\": [1]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/orders",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"orders"
+							]
+						},
+						"description": "请求此接口发起支付"
+					},
+					"response": []
+				},
+				{
+					"name": "获取订单列表",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzcwMjM0MTAsImV4cCI6MTU3NzAyNzAxMCwibmJmIjoxNTc3MDIzNDEwLCJqdGkiOiJBWTBTTXVoclk4S0NrSUU2Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.8NXN_pdiSYVpIJqluYYQ5pY4wDNBeyOKErOZNo_P4BI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/orders",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"orders"
+							]
+						},
+						"description": "请求此接口获取订单列表"
+					},
+					"response": [
+						{
+							"name": "获取订单列表",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_host}}/orders",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Dec 2019 14:32:20 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 22 Dec 2019 14:32:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.1"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "private, must-revalidate"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1577025200"
+								},
+								{
+									"key": "ETag",
+									"value": "\"a6a043a502b884ce21f3d146a9bcb6848cb7dfbb\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": \"cd805d7a-24bf-11ea-8bb1-00155deb58cc\",\n            \"details\": [\n                1\n            ],\n            \"created_at\": \"2019-12-22 21:34:39\",\n            \"updated_at\": \"2019-12-22 21:34:39\"\n        },\n        {\n            \"id\": \"dfef2a30-24bb-11ea-8d3f-00155deb58cc\",\n            \"details\": [\n                1\n            ],\n            \"created_at\": \"2019-12-22 21:06:32\",\n            \"updated_at\": \"2019-12-22 21:06:32\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "获取订单详情",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzcwMzIyOTAsImV4cCI6MTU3NzAzNTg5MCwibmJmIjoxNTc3MDMyMjkwLCJqdGkiOiJwaEYxb0l5REJTTDlFS2RBIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.kAW4k0aZSgTQy0R7dGjBeEYpKNbH9KAXHIio6pa17zo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/orders/cd805d7a-24bf-11ea-8bb1-00155deb58cc",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"orders",
+								"cd805d7a-24bf-11ea-8bb1-00155deb58cc"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
