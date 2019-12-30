@@ -14,6 +14,7 @@ class AddressTransformer extends TransformerAbstract
             'name' => $address->name,
             'phone' => $address->phone,
             'gender' => $address->gender == 'm' ? '先生' : '女士',
+            'street' => $address->street,
             'details' => $address->details,
         ];
     }

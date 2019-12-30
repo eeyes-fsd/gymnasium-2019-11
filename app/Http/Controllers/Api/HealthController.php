@@ -16,14 +16,18 @@ class HealthController extends Controller
      * @return \Dingo\Api\Http\Response | void
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function show($detail)
+    public function show($detail=null)
     {
         switch ($detail) {
             case 'intake':
-                $intake = Auth::user()->health->intake;
+                if (!$health = Auth::user()->health) {
+                    return $this->response->noContent();
+                }
+                $intake = $health->intake;
                 if (!$intake) {
                     return $this->response->errorNotFound('还未设置身体信息');
                 }
+                $intake['updated_at'] = $health->updated_at;
                 return $this->responseParsingIntake($intake);
             default:
                 $health = Auth::guard('api')->user()->health;
@@ -65,6 +69,7 @@ class HealthController extends Controller
         $health->update(['intake' => $intake]);
 
 
+        $intake['updated_at'] = $health->updated_at;
         return $this->responseParsingIntake($intake)->setStatusCode(201);
     }
 
@@ -93,7 +98,7 @@ class HealthController extends Controller
 
         $health->update(['intake' => $intake]);
 
-
+        $intake['updated_at'] = $health->updated_at;
         return $this->responseParsingIntake($intake);
     }
 
@@ -114,6 +119,7 @@ class HealthController extends Controller
         }
 
         return $this->response->array([
+            'updated_at' => $intake['updated_at']->diffForHumans(),
             'energy' => $intake['energy'],
             'ratio' => $ratio[0] ?? null,
             'bmr_warn' => $intake['bmr_warn']

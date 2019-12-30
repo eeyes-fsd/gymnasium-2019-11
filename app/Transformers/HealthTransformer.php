@@ -17,9 +17,8 @@ class HealthTransformer extends TransformerAbstract
             'height' => $health->height,
             'exercise' => DB::table('exercises')->find($health->exercise)->content,
             'purpose' => DB::table('purposes')->find($health->purpose)->content,
+            'habit' => DB::table('habits')->find($health->habit)->content,
             'fat_rate' => $health->fat,
-            'salt_rate' => $health->salt,
-            'work_time' => $health->work_time . '-' . $health->rest_time,
         ];
     }
 }

@@ -37,6 +37,17 @@ $api->version('v1', [
         $api->get('purposes', function () {
             return \Illuminate\Support\Facades\DB::table('purposes')->get();
         });
+        $api->get('habits', function () {
+            return \Illuminate\Support\Facades\DB::table('habits')->get();
+        });
+
+//        $api->get('debug', function () {
+//            $user = \App\Models\User::first();
+//            $recipe = \App\Models\Recipe::first();
+//            $health = $user->health;
+//            $handler = new \App\Handlers\AlgorithmHandler();
+//            return $handler->calculate_dist($health, $recipe);
+//        });
 
         //套餐路由
         $api->get('recipes/{type?}', 'RecipesController@index')

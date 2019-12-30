@@ -10,7 +10,9 @@ namespace App\Models;
  * @property int $user_id
  * @property User $user
  * @property string $name
+ * @property string $gender 称呼
  * @property string $phone
+ * @property string $street
  * @property string $details
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at

@@ -15,6 +15,7 @@ namespace App\Models;
  * @property int $height
  * @property int $exercise
  * @property int $purpose
+ * @property int $habit
  * @property float $fat
  * @property float $salt
  * @property string $work_time

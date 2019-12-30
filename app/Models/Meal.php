@@ -7,12 +7,10 @@ namespace App\Models;
  * @package App\Models
  *
  * @property int $id
- * @property string $photo
  * @property array $ingredients
  * @property int $fat
  * @property int $carbohydrate
  * @property int $protein
- * @property string $step
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */
@@ -23,7 +21,7 @@ class Meal extends Model
      */
     public function breakfast()
     {
-        return $this->hasOne('App\Models\Recipe', 'breakfast_id');
+        return $this->hasOne('App\Models\Diet', 'breakfast_id');
     }
 
     /**
@@ -31,7 +29,7 @@ class Meal extends Model
      */
     public function lunch()
     {
-        return $this->hasOne('App\Models\Recipe', 'lubch_id');
+        return $this->hasOne('App\Models\Diet', 'lubch_id');
     }
 
     /**
@@ -39,7 +37,7 @@ class Meal extends Model
      */
     public function dinner()
     {
-        return $this->hasOne('App\Models\Recipe', 'dinner_id');
+        return $this->hasOne('App\Models\Diet', 'dinner_id');
     }
 
     public function setIngredientsAttribute($ingredients)
@@ -50,7 +48,6 @@ class Meal extends Model
     public function getIngredientsAttribute($ingredients)
     {
         $raw = unserialize($ingredients);
-
         $data = [];
         foreach ($raw as $item)
         {

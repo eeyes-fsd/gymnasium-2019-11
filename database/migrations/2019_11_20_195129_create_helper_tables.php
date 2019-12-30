@@ -40,9 +40,24 @@ class CreateHelperTables extends Migration
             ['content' => '增强体质'],
         ]);
 
+        Schema::create('habits', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('content');
+        });
+
+        DB::table('habits')->insert([
+            ['content' => '一日三餐'],
+            ['content' => '三餐加一次加餐'],
+            ['content' => '三餐加两次加餐'],
+            ['content' => '三餐加三次加餐'],
+        ]);
+
         Schema::create('ingredients', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->float('protein')->comment('蛋白质 kCal / 100g');
+            $table->float('fat')->comment('脂肪 kCal / 100g');
+            $table->float('carbohydrate')->comment('碳水化合物 kCal / 100g');
         });
     }
 
@@ -56,5 +71,6 @@ class CreateHelperTables extends Migration
         Schema::dropIfExists('exercises');
         Schema::dropIfExists('purposes');
         Schema::dropIfExists('ingredients');
+        Schema::dropIfExists('habits');
     }
 }

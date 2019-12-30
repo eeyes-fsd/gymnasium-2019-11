@@ -18,11 +18,25 @@ class RecipeTransformer extends TransformerAbstract
     {
         switch ($this->type){
             case 'collection':
+                $ingredients = [];
+                foreach ($recipe->breakfast as $ingredient) {
+                    $ingredients[] = $ingredient['name'];
+                }
+                foreach ($recipe->lunch as $ingredient) {
+                    $ingredients[] = $ingredient['name'];
+                }
+                foreach ($recipe->dinner as $ingredient) {
+                    $ingredients[] = $ingredient['name'];
+                }
+
+                $ingredients = collect($ingredients);
+
                 return [
                     'id' => $recipe->id,
                     'name' => $recipe->name,
                     'cover' => $recipe->cover,
                     'price' => $recipe->price,
+                    'ingredients' => $ingredients->unique()->values()->all(),
                     'description' => $recipe->description,
                 ];
 
