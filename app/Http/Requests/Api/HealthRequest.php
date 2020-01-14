@@ -18,7 +18,6 @@ class HealthRequest extends Request
             'height' => 'required|numeric',
             'exercise' => 'required',
             'purpose' => 'required',
-            'habit' => 'required',
         ];
     }
 }

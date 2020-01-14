@@ -22,7 +22,7 @@ class CreateHealthsTable extends Migration
             $table->integer('height')->comment('身高/厘米');
             $table->integer('exercise')->comment('运动量分级');
             $table->integer('purpose')->comment('控制目的分级');
-            $table->integer('habit')->comment('饮食习惯分级');
+            $table->integer('habit')->comment('饮食习惯分级')->default(0);
             $table->float('fat')->comment('体脂率')->nullable();
             $table->text('intake')->comment('饮食控制计划')->nullable();
             $table->timestamps();

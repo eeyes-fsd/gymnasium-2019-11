@@ -3,6 +3,7 @@
 namespace App\Transformers;
 
 use App\Models\Recipe;
+use Illuminate\Support\Facades\DB;
 use League\Fractal\TransformerAbstract;
 
 class RecipeTransformer extends TransformerAbstract
@@ -20,23 +21,27 @@ class RecipeTransformer extends TransformerAbstract
             case 'collection':
                 $ingredients = [];
                 foreach ($recipe->breakfast as $ingredient) {
-                    $ingredients[] = $ingredient['name'];
+                    $ingredients[] = $ingredient;
                 }
                 foreach ($recipe->lunch as $ingredient) {
-                    $ingredients[] = $ingredient['name'];
+                    $ingredients[] = $ingredient;
                 }
                 foreach ($recipe->dinner as $ingredient) {
-                    $ingredients[] = $ingredient['name'];
+                    $ingredients[] = $ingredient;
                 }
 
-                $ingredients = collect($ingredients);
+                $ingredients = collect($ingredients)->unique();
+
+                $ingredients = $ingredients->map(function ($id) {
+                   return DB::table('ingredients')->find($id)->name;
+                });
 
                 return [
                     'id' => $recipe->id,
                     'name' => $recipe->name,
                     'cover' => $recipe->cover,
                     'price' => $recipe->price,
-                    'ingredients' => $ingredients->unique()->values()->all(),
+                    'ingredients' => $ingredients->all(),
                     'description' => $recipe->description,
                 ];
 

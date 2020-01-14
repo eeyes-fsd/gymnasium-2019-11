@@ -39,7 +39,7 @@ class HealthController extends Controller
     /**
      * @param HealthRequest $request
      * @param AlgorithmHandler $algorithm
-     * @return \Dingo\Api\Http\Response|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return \Dingo\Api\Http\Response
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(HealthRequest $request, AlgorithmHandler $algorithm)
