@@ -398,9 +398,9 @@ class AlgorithmHandler
             foreach (($recipe->$name)['ingredients'] as $ingredient) {
                 $ingredient = \App\Models\Ingredient::find($ingredient);
                 $nutrition[] = [
+                    $ingredient->carbohydrate,
                     $ingredient->protein,
                     $ingredient->fat,
-                    $ingredient->carbohydrate,
                 ];
             }
 
@@ -433,13 +433,21 @@ class AlgorithmHandler
         return true;
     }
 
-    private function call_outside_calculate($spares, $sum) {
-        //TODO 完成外部程序调用
-        $dist = [];
-        foreach ($spares[0] as $item) {
-            $dist[] = 50;
-        }
-        return $dist;
+    private function call_outside_calculate($spares, $lb, $sum) {
+        $id = \Illuminate\Support\Str::random(6);
+        $key = 'gym:swap:' . $id;
+
+        \Illuminate\Support\Facades\Redis::set($key, json_encode([
+            'a' => $spares,
+            'b' => $sum,
+            'lb' => $lb
+        ]));
+
+        system('../../external/solve.py' . $id);
+
+        $result = \Illuminate\Support\Facades\Redis::get($key);
+
+        return json_decode($result, true);
     }
 
     private function parse_ratio(string $ratio)
