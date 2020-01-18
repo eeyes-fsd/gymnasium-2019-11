@@ -393,46 +393,48 @@ class AlgorithmHandler
         $intakes = $intakes['energy'];
         $ratio = $this->parse_ratio($ratio);
 
-        array_map(function ($name) use ($recipe, $diet, $ratio, $intakes) {
-            $nutrition = array();
+        foreach (['breakfast', 'lunch', 'dinner'] as $name) {
+            $nutrition = array([], [], []); $lb = array();
             foreach (($recipe->$name)['ingredients'] as $ingredient) {
-                $ingredient = \App\Models\Ingredient::find($ingredient);
-                $nutrition[] = [
-                    $ingredient->carbohydrate,
-                    $ingredient->protein,
-                    $ingredient->fat,
-                ];
+                $ingredient_ = \App\Models\Ingredient::find($ingredient['id']);
+                $lb[] = $ingredient['min'];
+                $nutrition[0][] = $ingredient_->carbohydrate;
+                $nutrition[1][] = $ingredient_->protein;
+                $nutrition[2][] = $ingredient_->fat;
             }
 
-            $dist = $this->call_outside_calculate($nutrition, [
-                $intakes * $ratio[0] * 0.3,
-                $intakes * $ratio[1] * 0.3,
-                $intakes * $ratio[2] * 0.3,
+
+
+            $dist = $this->call_outside_calculate($nutrition, $lb, [
+                $intakes * $ratio[0] * ($name == 'lunch' ? 0.4 : 0.3),
+                $intakes * $ratio[1] * ($name == 'lunch' ? 0.4 : 0.3),
+                $intakes * $ratio[2] * ($name == 'lunch' ? 0.4 : 0.3),
             ]);
 
+            if (empty(($recipe->$name)['ingredients'])) dd($name, $recipe->$name);
+
             $meal_ingredients = array_map(function ($n, $d) {
-                return array('id' => $n, 'amount' => $d);
+                return array('id' => $n['id'], 'amount' => $d);
             }, ($recipe->$name)['ingredients'], $dist);
 
             $id = $name . '_id';
 
-            $attr = [
-                $id => $diet->id,
+            $meal = \App\Models\Meal::create([
                 'ingredients' => $meal_ingredients,
-            ];
-
-            $meal = \App\Models\Meal::create($attr);
+            ]);
 
             $diet->$id = $meal->id;
-        }, [
-            'breakfast',
-            'lunch',
-            'dinner'
-        ]);
+        }
 
         return true;
     }
 
+    /**
+     * @param $spares
+     * @param $lb
+     * @param $sum
+     * @return mixed
+     */
     private function call_outside_calculate($spares, $lb, $sum) {
         $id = \Illuminate\Support\Str::random(6);
         $key = 'gym:swap:' . $id;
@@ -443,13 +445,18 @@ class AlgorithmHandler
             'lb' => $lb
         ]));
 
-        system('../../external/solve.py' . $id);
+        $return = exec('python3 ' . __DIR__ . '/../../external/solve.py ' . $id);
+        if ($return != 0) return false;
 
         $result = \Illuminate\Support\Facades\Redis::get($key);
-
+        \Illuminate\Support\Facades\Redis::del($key);
         return json_decode($result, true);
     }
 
+    /**
+     * @param string $ratio
+     * @return array|string
+     */
     private function parse_ratio(string $ratio)
     {
         $ratio = explode(':', $ratio);

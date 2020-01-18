@@ -29,7 +29,7 @@ class Meal extends Model
      */
     public function lunch()
     {
-        return $this->hasOne('App\Models\Diet', 'lubch_id');
+        return $this->hasOne('App\Models\Diet', 'lunch_id');
     }
 
     /**
@@ -42,7 +42,7 @@ class Meal extends Model
 
     public function setIngredientsAttribute($ingredients)
     {
-        $this->attributes = serialize($ingredients);
+        $this->attributes['ingredients'] = serialize($ingredients);
     }
 
     public function getIngredientsAttribute($ingredients)

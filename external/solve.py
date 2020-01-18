@@ -1,4 +1,4 @@
-import configparser as config
+from config import conf
 import scipy.optimize as opt
 import redis
 import json
@@ -44,24 +44,25 @@ def main():
 
     argv = sys.argv
 
-    redis_config = config.ConfigParser()
-    redis_config.read('.env')
-
     redis_connection = redis.Redis(
-        redis_config.get('redis', 'host'),
-        redis_config.get('redis', 'port'),
-        # redis_config.get('redis', 'password'),
-        redis_config.get('redis', 'db'),
+        conf.redis['host'],
+        conf.redis['port'],
+        conf.redis['password'],
+        conf.redis['db'],
         decode_responses=True,
     )
 
-    key = redis_config.get('app', 'name') + ':' + redis_config.get('app', 'tag') + ':' + argv[1]
+    key = conf.app['name'] + ':' + conf.app['tag'] + ':' + argv[1]
     data = redis_connection.get(key)
     data = json.loads(data)
 
     result = solve(data['a'], data['b'], data['lb'])
-    redis_connection.set(key, json.dumps(result.x))
+    if not result.success:
+        print(1)
+        exit(1)
+    redis_connection.set(key, json.dumps(result.x.tolist()))
 
+    print(0)
     redis_connection.close()
 
 
