@@ -21,6 +21,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property Address $address
  * @property Health $health
  * @property Collection $recipes
+ * @property Collection $orders
+ * @property Collection $topics
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */
@@ -111,8 +113,19 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsToMany('App\Models\Recipe')->withTimestamps()->withPivot(['id']);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function orders()
     {
         return $this->hasMany('App\Models\Order', 'user_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function topics()
+    {
+        return $this->hasMany('App\Models\Topic', 'user_id');
     }
 }
