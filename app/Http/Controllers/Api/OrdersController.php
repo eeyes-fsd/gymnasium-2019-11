@@ -32,16 +32,26 @@ class OrdersController extends Controller
     public function store(OrderRequest $request)
     {
         $payment = \EasyWeChat::payment();
-
         $order_id = Uuid::uuid1();
         $recipes = $request->recipes;
-
+        $dites=$request->dites;
+        $ingredients=$request->ingredients;
         $fee = 0; $details = [];
+
         foreach ($recipes as $id) {
             $recipe = Recipe::findOrFail($id);
             $details[] = $id;
-            $fee += $recipe->price;
+            $fee += $recipe->price;//算钱
         }
+        foreach ($dites as $amount) {
+            $dite = Dite::findOrFail($amount);
+            $fee += $dite->process_cost*$amount;//算钱
+        }
+        foreach ($ingredients as $amount) {
+            $ingredient = Ingredient::findOrFail($amount);
+            $fee += $ingredient->ingredient_cost*$amount;//算钱
+        }
+            $fee+=$express_fee;
 
         Order::create([
             'id' => $order_id,

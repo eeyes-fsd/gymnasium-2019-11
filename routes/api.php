@@ -97,6 +97,7 @@ $api->version('v1', [
                 ->name('api.orders.store');
             $api->post('order/{order}/callback', 'OrdersController@callback')
                 ->name('api.orders.callback');
+            $api->post()
         });
     });
 });
