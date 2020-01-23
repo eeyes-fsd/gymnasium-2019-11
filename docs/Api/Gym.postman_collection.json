@@ -93,7 +93,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzQyNTEyMjIsImV4cCI6MTU3NDI1NDgyMiwibmJmIjoxNTc0MjUxMjIyLCJqdGkiOiJLbExYU1NKWGZtNlZHUTl2Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Rug2WQ8sgAVV8bvPPe4L0RTUowKprkwE6xCprM8E-JU",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzcwODY1MDYsImV4cCI6MTU3NzA5MDEwNiwibmJmIjoxNTc3MDg2NTA2LCJqdGkiOiJrZW9kdjVSY3Z1QzJxdVQxIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.pTlCKGtbLP48JXzLDG-fc6Vbw8VszDYH0DRs4biBZww",
 									"type": "string"
 								}
 							]
@@ -111,7 +111,75 @@
 						},
 						"description": "请求此接口获取用户数据"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "获取用户数据",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_host}}/user",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Dec 2019 07:59:23 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 23 Dec 2019 07:59:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.10"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "private, must-revalidate"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1577088014"
+								},
+								{
+									"key": "ETag",
+									"value": "\"4e62a6be95bf6791b2068439432b2c85caece69a\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"sxxuz\",\n        \"phone\": \"15129877128\",\n        \"share_id\": \"ddc676fc-5dda-4dde-85ee-36f38abc3357\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "删除用户数据",
@@ -165,12 +233,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"phone\": \"13455987659\",\n\t\"captcha\": \"559987\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\n\t\"phone\": \"13455987659\",\n\t\"captcha\": \"559987\"\n}"
 						},
 						"url": {
 							"raw": "{{api_host}}/user",
@@ -279,12 +342,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"sxxuz\",\n\t\"phone\": \"18991781060\",\n\t\"captcha\": \"151298\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\n\t\"name\": \"sxxuz\",\n\t\"phone\": \"18991781060\",\n\t\"captcha\": \"151298\"\n}"
 						},
 						"url": {
 							"raw": "{{api_host}}/user",
@@ -393,7 +451,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzcwMDk2NjcsImV4cCI6MTU3NzAxMzI2NywibmJmIjoxNTc3MDA5NjY3LCJqdGkiOiJ0Y09FSGhQcE43NHdvdm0xIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.fa6vuF-EXBbYyZ7pgiADyKkg_Su_w90zExhrsk0q2NM",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1Nzc0NjA5MjgsImV4cCI6MTU3NzQ2NDUyOCwibmJmIjoxNTc3NDYwOTI4LCJqdGkiOiJFazlZV0tya2EwZ1pBOGVxIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.5VhIUbA-JDo2drLzcT8yDlTLCgaMOtnR4wSFuC46WtY",
 									"type": "string"
 								}
 							]
@@ -409,12 +467,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"gender\": \"m\",\n\t\"birthday\": \"2000-01-14\",\n\t\"weight\": 75.2,\n\t\"height\": 176,\n\t\"exercise\": 1,\n\t\"purpose\": 1,\n\t\"fat\": 0.3,\n\t\"salt\": 0.2,\n\t\"work_time\": \"10:00\",\n\t\"rest_time\": \"23:00\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\n\t\"gender\": \"m\",\n\t\"birthday\": \"2000-01-14\",\n\t\"weight\": 75.2,\n\t\"height\": 176,\n\t\"exercise\": 1,\n\t\"purpose\": 1,\n\t\"fat\": 0.3,\n\t\"habit\": 1\n}"
 						},
 						"url": {
 							"raw": "{{api_host}}/health",
@@ -427,97 +480,7 @@
 						},
 						"description": "请求此接口，存储健康状况。已有健康状况请求此接口会修改已有数据。"
 					},
-					"response": [
-						{
-							"name": "存储健康状况",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n\t\"gender\": \"m\",\n\t\"birthday\": \"2000-01-14\",\n\t\"weight\": 75.2,\n\t\"height\": 176,\n\t\"exercise\": 1,\n\t\"purpose\": 1,\n\t\"fat\": 0.3,\n\t\"salt\": 0.2,\n\t\"work_time\": \"10:00\",\n\t\"rest_time\": \"23:00\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost/api/health",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"path": [
-										"api",
-										"health"
-									]
-								}
-							},
-							"status": "Created",
-							"code": 201,
-							"_postman_previewlanguage": "html",
-							"header": [
-								{
-									"key": "Host",
-									"value": "localhost"
-								},
-								{
-									"key": "Date",
-									"value": "Wed, 20 Nov 2019 12:06:31 GMT"
-								},
-								{
-									"key": "Date",
-									"value": "Wed, 20 Nov 2019 12:06:31 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "close"
-								},
-								{
-									"key": "X-Powered-By",
-									"value": "PHP/7.3.10"
-								},
-								{
-									"key": "Cache-Control",
-									"value": "private, must-revalidate"
-								},
-								{
-									"key": "Location",
-									"value": "http://localhost/api/health"
-								},
-								{
-									"key": "Content-Type",
-									"value": "text/html; charset=UTF-8"
-								},
-								{
-									"key": "X-RateLimit-Limit",
-									"value": "60"
-								},
-								{
-									"key": "X-RateLimit-Remaining",
-									"value": "58"
-								},
-								{
-									"key": "X-RateLimit-Reset",
-									"value": "1574251627"
-								},
-								{
-									"key": "ETag",
-									"value": "\"da39a3ee5e6b4b0d3255bfef95601890afd80709\""
-								}
-							],
-							"cookie": [],
-							"body": null
-						}
-					]
+					"response": []
 				},
 				{
 					"name": "获取健康状况",
@@ -527,7 +490,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzQyNTEyMjIsImV4cCI6MTU3NDI1NDgyMiwibmJmIjoxNTc0MjUxMjIyLCJqdGkiOiJLbExYU1NKWGZtNlZHUTl2Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Rug2WQ8sgAVV8bvPPe4L0RTUowKprkwE6xCprM8E-JU",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1Nzc0NjA5MjgsImV4cCI6MTU3NzQ2NDUyOCwibmJmIjoxNTc3NDYwOTI4LCJqdGkiOiJFazlZV0tya2EwZ1pBOGVxIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.5VhIUbA-JDo2drLzcT8yDlTLCgaMOtnR4wSFuC46WtY",
 									"type": "string"
 								}
 							]
@@ -639,12 +602,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"gender\": \"m\",\n\t\"birthday\": \"2000-01-14\",\n\t\"weight\": 75.2,\n\t\"height\": 175,\n\t\"exercise\": 1,\n\t\"purpose\": 3,\n\t\"fat\": null,\n\t\"salt\": null,\n\t\"work_time\": \"10:00\",\n\t\"rest_time\": \"23:00\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\n\t\"gender\": \"m\",\n\t\"birthday\": \"2000-01-14\",\n\t\"weight\": 75.2,\n\t\"height\": 175,\n\t\"exercise\": 1,\n\t\"purpose\": 3,\n\t\"fat\": null,\n\t\"salt\": null,\n\t\"work_time\": \"10:00\",\n\t\"rest_time\": \"23:00\"\n}"
 						},
 						"url": {
 							"raw": "{{api_host}}/health",
@@ -751,7 +709,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzcwNTA1MjAsImV4cCI6MTU3NzA1NDEyMCwibmJmIjoxNTc3MDUwNTIwLCJqdGkiOiJqZkEwdUY3b09IZEl4SWJEIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.k94gCZQMe1CPQhBGkNz7OJyOgi8yZHnKPj7JknrE2pw",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1Nzc0NjA5MjgsImV4cCI6MTU3NzQ2NDUyOCwibmJmIjoxNTc3NDYwOTI4LCJqdGkiOiJFazlZV0tya2EwZ1pBOGVxIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.5VhIUbA-JDo2drLzcT8yDlTLCgaMOtnR4wSFuC46WtY",
 									"type": "string"
 								}
 							]
@@ -772,7 +730,7 @@
 					},
 					"response": [
 						{
-							"name": "获取能量摄入",
+							"name": "获取能量摄入-n",
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
@@ -797,11 +755,11 @@
 								},
 								{
 									"key": "Date",
-									"value": "Sun, 22 Dec 2019 21:54:57 GMT"
+									"value": "Mon, 23 Dec 2019 07:41:31 GMT"
 								},
 								{
 									"key": "Date",
-									"value": "Sun, 22 Dec 2019 21:54:57 GMT"
+									"value": "Mon, 23 Dec 2019 07:41:31 GMT"
 								},
 								{
 									"key": "Connection",
@@ -825,19 +783,19 @@
 								},
 								{
 									"key": "X-RateLimit-Remaining",
-									"value": "59"
+									"value": "58"
 								},
 								{
 									"key": "X-RateLimit-Reset",
-									"value": "1577051757"
+									"value": "1577086943"
 								},
 								{
 									"key": "ETag",
-									"value": "\"805fc6983c16c3a7e3d019717d718b925f951177\""
+									"value": "\"d868877a118d80a0569f9e0d41bf0ab4cd21a0f2\""
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"energy\": 3008,\n    \"ratio\": \"2:1:1\",\n    \"bmr_warn\": false\n}"
+							"body": "{\n    \"updated_at\": \"9小时前\",\n    \"energy\": 3008,\n    \"ratio\": \"2:1:1\",\n    \"bmr_warn\": false\n}"
 						}
 					]
 				}
@@ -855,7 +813,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzQyNTU2NDQsImV4cCI6MTU3NDI1OTI0NCwibmJmIjoxNTc0MjU1NjQ0LCJqdGkiOiJsaVRvQ0JUR1RBaHIxa09mIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.0ukjKsTkqwy4imTkIYaQ08ircgwXF4z2IAuSwhR8JWs",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzcwODY1MDYsImV4cCI6MTU3NzA5MDEwNiwibmJmIjoxNTc3MDg2NTA2LCJqdGkiOiJrZW9kdjVSY3Z1QzJxdVQxIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.pTlCKGtbLP48JXzLDG-fc6Vbw8VszDYH0DRs4biBZww",
 									"type": "string"
 								}
 							]
@@ -950,7 +908,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzQyNTU2NDQsImV4cCI6MTU3NDI1OTI0NCwibmJmIjoxNTc0MjU1NjQ0LCJqdGkiOiJsaVRvQ0JUR1RBaHIxa09mIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.0ukjKsTkqwy4imTkIYaQ08ircgwXF4z2IAuSwhR8JWs",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzcwODY1MDYsImV4cCI6MTU3NzA5MDEwNiwibmJmIjoxNTc3MDg2NTA2LCJqdGkiOiJrZW9kdjVSY3Z1QzJxdVQxIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.pTlCKGtbLP48JXzLDG-fc6Vbw8VszDYH0DRs4biBZww",
 									"type": "string"
 								}
 							]
@@ -966,12 +924,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"XuZhixuan\",\n\t\"phone\": \"15129877128\",\n\t\"gender\": \"f\",\n\t\"details\": \"西19-0625\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\n\t\"name\": \"XuZhixuan\",\n\t\"phone\": \"15129877128\",\n\t\"gender\": \"f\",\n\t\"street\": \"西安市咸宁西路28号西安交通大学文治书院\",\n\t\"details\": \"西19-0625\"\n}"
 						},
 						"url": {
 							"raw": "{{api_host}}/addresses",
@@ -1068,12 +1021,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"XuZhixuan\",\n\t\"phone\": \"18909115689\",\n\t\"gender\": \"f\",\n\t\"details\": \"西19-0625\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\n\t\"name\": \"XuZhixuan\",\n\t\"phone\": \"18909115689\",\n\t\"gender\": \"f\",\n\t\"details\": \"西19-0625\"\n}"
 						},
 						"url": {
 							"raw": "{{api_host}}/addresses/2",
@@ -1119,12 +1067,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"phone\": \"15129877128\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\n\t\"phone\": \"15129877128\"\n}"
 						},
 						"url": {
 							"raw": "{{api_host}}/phone_verify",
@@ -1136,6 +1079,57 @@
 							]
 						},
 						"description": "请求此接口以验证短信"
+					},
+					"response": []
+				},
+				{
+					"name": "获取全部饮食习惯",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/habits",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"habits"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取全部锻炼目的",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/purposes",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"purposes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取全部锻炼情况",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/exercises",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"exercises"
+							]
+						}
 					},
 					"response": []
 				}
@@ -1662,12 +1656,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"recipes\": [1]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\n\t\"recipes\": [1]\n}"
 						},
 						"url": {
 							"raw": "{{api_host}}/orders",
@@ -1801,6 +1790,162 @@
 							"path": [
 								"orders",
 								"cd805d7a-24bf-11ea-8bb1-00155deb58cc"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Topic",
+			"item": [
+				{
+					"name": "新建话题故事",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1Nzk1ODA2MzgsImV4cCI6MTU3OTU4NDIzOCwibmJmIjoxNTc5NTgwNjM4LCJqdGkiOiJBWWJJcmZtTkl1UjlrVzlqIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ZooGSZtjLklvgn8cxmIghq2AX3d_lUrkVfYJL8OX1N8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"我的煞笔故事\",\n    \"body\": \"<h1>妈的智障</h1>\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/topics",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"topics"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取话题列表",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/topics",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"topics"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取话题详情",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/topics/1",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"topics",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "更新话题内容",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1Nzk1ODA2MzgsImV4cCI6MTU3OTU4NDIzOCwibmJmIjoxNTc5NTgwNjM4LCJqdGkiOiJBWWJJcmZtTkl1UjlrVzlqIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ZooGSZtjLklvgn8cxmIghq2AX3d_lUrkVfYJL8OX1N8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"我的煞笔故事\",\n    \"body\": \"<h1>故事内容——这是一个傻逼的故事</h1>\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/topics/1",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"topics",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除话题故事",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1Nzk1ODA2MzgsImV4cCI6MTU3OTU4NDIzOCwibmJmIjoxNTc5NTgwNjM4LCJqdGkiOiJBWWJJcmZtTkl1UjlrVzlqIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ZooGSZtjLklvgn8cxmIghq2AX3d_lUrkVfYJL8OX1N8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/topics/1",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"topics",
+								"1"
 							]
 						}
 					},

@@ -31,6 +31,7 @@ $api->version('v1', [
             ->name('api.user.store');
         $api->post('phone_verify', 'HandlersController@verify_phone')
             ->name('api.phone.verify');
+
         $api->get('exercises', function () {
             return \Illuminate\Support\Facades\DB::table('exercises')->get();
         });
@@ -40,6 +41,11 @@ $api->version('v1', [
         $api->get('habits', function () {
             return \Illuminate\Support\Facades\DB::table('habits')->get();
         });
+
+        $api->get('topics', 'TopicsController@index')
+            ->name('api.topics.index');
+        $api->get('topics/{topic}', 'TopicsController@show')
+            ->name('api.topics.show');
 
         $api->get('debug', function () {
             $user = \App\Models\User::first();
@@ -97,7 +103,14 @@ $api->version('v1', [
                 ->name('api.orders.store');
             $api->post('order/{order}/callback', 'OrdersController@callback')
                 ->name('api.orders.callback');
-            $api->post()
+
+            $api->post('topics', 'TopicsController@store')
+                ->name('api.topics.store');
+            $api->put('topics/{topic}', 'TopicsController@update')
+                ->name('api.topics.update');
+            $api->delete('topics/{topic}', 'TopicsController@destroy')
+                ->name('api.topics.delete');
+
         });
     });
 });
