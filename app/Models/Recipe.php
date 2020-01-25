@@ -10,6 +10,7 @@ namespace App\Models;
  * @property string $name
  * @property string $cover
  * @property int $price
+ * @property int $cook_cost
  * @property string | null $description
  * @property array $breakfast
  * @property array $lunch

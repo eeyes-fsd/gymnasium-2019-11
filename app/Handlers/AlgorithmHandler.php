@@ -375,21 +375,23 @@ class AlgorithmHandler
     /**
      * @param Health $health
      * @param Recipe $recipe
-     * @return bool
+     * @return \Illuminate\Support\Collection
      */
     public function calculate_dist(Health $health, Recipe $recipe)
     {
         $user_id = $health->user->id;
+        $result = collect();
 
-        $diet = \App\Models\Diet::create([
+        $diet = new \App\Models\Diet([
             'user_id' => $user_id,
             'recipe_id' => $recipe->id,
         ]);
 
+        $result->prepend($diet, 'diet');
 
         $intakes = $health->intake;
         $ratio = count($intakes['ratio']) > 1 ? \Illuminate\Support\Facades\Cache::get('user:' . $user_id . ':intake_lt') : $intakes['ratio'][0][0];
-        if (!$ratio) abort(404);
+        if (!$ratio) abort(404, '未设置身体数据');
         $intakes = $intakes['energy'];
         $ratio = $this->parse_ratio($ratio);
 
@@ -403,30 +405,28 @@ class AlgorithmHandler
                 $nutrition[2][] = $ingredient_->fat;
             }
 
-
-
             $dist = $this->call_outside_calculate($nutrition, $lb, [
                 $intakes * $ratio[0] * ($name == 'lunch' ? 0.4 : 0.3),
                 $intakes * $ratio[1] * ($name == 'lunch' ? 0.4 : 0.3),
                 $intakes * $ratio[2] * ($name == 'lunch' ? 0.4 : 0.3),
             ]);
 
-            if (empty(($recipe->$name)['ingredients'])) dd($name, $recipe->$name);
-
             $meal_ingredients = array_map(function ($n, $d) {
-                return array('id' => $n['id'], 'amount' => $d);
+                return array('id' => $n['id'], 'amount' => (int)$d);
             }, ($recipe->$name)['ingredients'], $dist);
 
             $id = $name . '_id';
 
-            $meal = \App\Models\Meal::create([
+            $meal = new \App\Models\Meal([
                 'ingredients' => $meal_ingredients,
             ]);
+
+            $result->prepend($meal, $name);
 
             $diet->$id = $meal->id;
         }
 
-        return true;
+        return $result;
     }
 
     /**

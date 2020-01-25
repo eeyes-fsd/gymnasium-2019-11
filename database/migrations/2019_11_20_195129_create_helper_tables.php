@@ -55,6 +55,7 @@ class CreateHelperTables extends Migration
         Schema::create('ingredients', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->integer('price');
             $table->float('carbohydrate')->comment('碳水化合物 kCal/g');
             $table->float('protein')->comment('蛋白质 kCal/g');
             $table->float('fat')->comment('脂肪 kCal/g');

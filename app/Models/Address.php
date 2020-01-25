@@ -14,6 +14,7 @@ namespace App\Models;
  * @property string $phone
  * @property string $street
  * @property string $details
+ * @property \Illuminate\Database\Eloquent\Collection $orders
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */
@@ -25,5 +26,10 @@ class Address extends Model
     public function user()
     {
         return $this->belongsTo('App\Models\User', 'user_id');
+    }
+
+    public function orders()
+    {
+        return $this->hasMany('App\Models\Order', 'address_id0');
     }
 }

@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 /**
  * Class Order
  * @package App\Models
@@ -11,7 +9,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $id
  * @property array $details
  * @property int $user_id
+ * @property int $address_id
  * @property User $user
+ * @property Address $address
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */
@@ -43,5 +43,13 @@ class Order extends Model
     public function user()
     {
         return $this->belongsTo('App\Models\User', 'user_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function address()
+    {
+        return $this->belongsTo('App\Models\Address', 'address_id');
     }
 }

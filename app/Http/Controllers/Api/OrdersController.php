@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Diet;
+use App\Models\Ingredient;
 use App\Models\Order;
 use Ramsey\Uuid\Uuid;
 use App\Models\Recipe;
@@ -12,6 +14,9 @@ use App\Http\Requests\Api\OrderRequest;
 
 class OrdersController extends Controller
 {
+    /**
+     * @return \Dingo\Api\Http\Response
+     */
     public function index()
     {
         $user_id = Auth::guard('api')->id();
@@ -20,9 +25,40 @@ class OrdersController extends Controller
         return $this->response->collection($orders, new OrderTransformer());
     }
 
+    /**
+     * @param Order $order
+     * @return \Dingo\Api\Http\Response
+     */
     public function show(Order $order)
     {
         return $this->response->item($order, new OrderTransformer());
+    }
+
+    /**
+     * @param array $diet_
+     * @param bool $cook
+     * @return int
+     */
+    private function calculate_cost(array $diet_, bool $cook=false)
+    {
+        $fee = 0;
+
+        $diet_recipe = Recipe::findOrFail($diet_['id']);
+        if (!$diet = Diet::where('recipe_id', $diet_recipe->id)->where('user_id', Auth::id())->first()) {
+            $handler = new \App\Handlers\AlgorithmHandler();
+            $result = $handler->calculate_dist(Auth::guard('api')->user()->health, $diet_recipe);
+            $diet = $result->diet;
+        }
+
+        foreach (['breakfast', 'lunch', 'dinner'] as $name) {
+            foreach (($diet->$name)->ingredients as $item) {
+                $ingredient = Ingredient::find($item['id']);
+                $fee += $ingredient->price * $item['amount'];
+            }
+            $fee += $diet_recipe->cook_cost;
+        }
+
+        return $fee;
     }
 
     /**
@@ -33,30 +69,34 @@ class OrdersController extends Controller
     {
         $payment = \EasyWeChat::payment();
         $order_id = Uuid::uuid1();
-        $recipes = $request->recipes;
-        $dites=$request->dites;
-        $ingredients=$request->ingredients;
-        $fee = 0; $details = [];
+        $fee = 0; $details = []; $deliver = false;
 
-        foreach ($recipes as $id) {
-            $recipe = Recipe::findOrFail($id);
-            $details[] = $id;
-            $fee += $recipe->price;//算钱
+        foreach ($request->recipes as $recipe_) {
+            $recipe = Recipe::findOrFail($recipe_['id']);
+            $details['recipes'] = $recipe_['id'];
+            $fee += $recipe->price;
         }
-        foreach ($dites as $amount) {
-            $dite = Dite::findOrFail($amount);
-            $fee += $dite->process_cost*$amount;//算钱
+
+        foreach ($request->diets as $diet_) {
+            $deliver = true;
+            $fee += $this->calculate_cost($diet_, true);
+            $details['meals'] = $diet_;
         }
-        foreach ($ingredients as $amount) {
-            $ingredient = Ingredient::findOrFail($amount);
-            $fee += $ingredient->ingredient_cost*$amount;//算钱
+
+        foreach ($request->ingredients as $ingredient_) {
+            $deliver = true;
+            $fee += $this->calculate_cost($ingredient_);
+            $details['ingredients'] = $ingredient_;
         }
-            $fee+=$express_fee;
+
+        //TODO 添加运费计算
+        //if ($deliver) $fee += ;
 
         Order::create([
             'id' => $order_id,
             'user_id' => Auth::id(),
             'details' => $details,
+            'address_id' => $request->address_id,
             'status' => '0'
         ]);
 

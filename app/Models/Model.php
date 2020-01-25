@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Model as BaseModel;
  * @package App\Models
  *
  * @method static static create(array $content)
+ * @method static static find(int $id)
+ * @method static static findOrFail(int $id)
+ * @method static \Illuminate\Database\Eloquent\Builder where(...$params)
  *
  * @property int id
  * @property \Carbon\Carbon $created_at
