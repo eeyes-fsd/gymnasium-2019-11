@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Handlers\AlgorithmHandler;
+use App\Models\Diet;
+use App\Models\Ingredient;
 use App\Transformers\RecipeTransformer;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use App\Models\Recipe;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +19,32 @@ class RecipesController extends Controller
      */
     public function show(Recipe $recipe)
     {
+        if (!Auth::guard('api')->user()->has_recipe($recipe)) abort(404, '您还未购买此食谱');
+
+        if (!$diet = Diet::where('user_id', Auth::guard('api')->id())->where('recipe_id', $recipe->id)->first()) {
+            $handler = new AlgorithmHandler();
+            $diet = $handler->calculate_dist(Auth::guard('api')->user()->health, $recipe);
+            $diet->save();
+        }
+
+        foreach (['breakfast', 'lunch', 'dinner'] as $item) {
+            $temp = [];
+            $temp['cover'] = $recipe->$item['cover'];
+            $temp['nutrient'] = ['carbohydrate' => 0,'protein' => 0,'fat' => 0,];
+            foreach ($diet->$item as $ingredient) {
+                $ingredient_instance = Ingredient::find($ingredient['id']);
+                $temp['ingredients'][] = [
+                    'name' => $ingredient_instance->name,
+                    'amount' => $ingredient['amount']
+                ];
+                $temp['nutrient']['carbohydrate'] += $ingredient_instance->carbohydrate;
+                $temp['nutrient']['protein'] += $ingredient_instance->protein;
+                $temp['nutrient']['fat'] += $ingredient_instance->fat;
+            }
+
+            $recipe->$item = $temp;
+        }
+
         return $this->response->item($recipe, new RecipeTransformer('item'));
     }
 

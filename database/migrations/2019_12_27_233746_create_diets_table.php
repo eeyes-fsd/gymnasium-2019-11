@@ -17,9 +17,9 @@ class CreateDietsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id');
             $table->integer('recipe_id');
-            $table->integer('breakfast_id')->nullable()->comment('早餐ID');
-            $table->integer('lunch_id')->nullable()->comment('午餐ID');
-            $table->integer('dinner_id')->nullable()->comment('晚餐ID');
+            $table->longText('breakfast')->nullable()->comment('早餐');
+            $table->longText('lunch')->nullable()->comment('午餐');
+            $table->longText('dinner')->nullable()->comment('晚餐');
             $table->timestamps();
         });
     }

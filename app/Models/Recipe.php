@@ -17,7 +17,8 @@ namespace App\Models;
  * @property string $lunch_step
  * @property array $dinner
  * @property string $dinner_step
- * @property \Illuminate\Database\Eloquent\Collection $users
+ * @property int $cook_cost
+ * @property \Illuminate\Database\Eloquent\Collection|User[] $users
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */
@@ -79,6 +80,6 @@ class Recipe extends Model
      */
     public function setDinnerAttribute($dinner)
     {
-        $this->attributes['breakfast'] = serialize($dinner);
+        $this->attributes['dinner'] = serialize($dinner);
     }
 }

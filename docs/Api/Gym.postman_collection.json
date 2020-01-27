@@ -1418,7 +1418,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"recipes\": [\n\t\t{\n\t\t\t\"id\": 1\n\t\t}\t\n\t],\n\t\"diets\": [\n\t\t{\n\t\t\t\"id\": 1,\n\t\t\t\"amount\": 5\n\t\t}\n\t],\n\t\"ingredients\": [\n\t\t{\n\t\t\t\"id\": 1,\n\t\t\t\"amount\": 5\n\t\t}\t\n\t]\n}"
+							"raw": "{\n\t\"recipes\": [\n\t\t0\n\t],\n\t\"diets\": [\n\t\t{\n\t\t\t\"id\": 1,\n\t\t\t\"amount\": 5\n\t\t}\n\t],\n\t\"ingredients\": [\n\t\t{\n\t\t\t\"id\": 1,\n\t\t\t\"amount\": 5\n\t\t}\t\n\t],\n\t\"address_id\": 3\n}"
 						},
 						"url": {
 							"raw": "{{api_host}}/orders",
@@ -1950,6 +1950,188 @@
 						"description": "请求此接口更新地址信息"
 					},
 					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Diets",
+			"item": [
+				{
+					"name": "食堂配餐列表",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/diets",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"diets"
+							]
+						},
+						"description": "请求此接口获取配餐列表"
+					},
+					"response": [
+						{
+							"name": "食堂配餐列表",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_host}}/diets",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"diets"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.16.1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "private, must-revalidate"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Jan 2020 15:29:32 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1580139024"
+								},
+								{
+									"key": "ETag",
+									"value": "\"aa238ac1df9c0b41557deb549a744a8566840dfc\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"cover\": \"https://gym.eeyes.xyz/storage/photo/recipes/cover-1.png\",\n            \"price\": \"64506450\",\n            \"description\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "获取配餐详情",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1ODAxMzkxMTQsImV4cCI6MTU4MDE0MjcxNCwibmJmIjoxNTgwMTM5MTE0LCJqdGkiOiJERWxkTGhjaVpQRGU4RU1pIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.MObdAYC5nQnRgypkT5tYXqqA6UIXWs-7zHwkrTXGyHc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/diets/1",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"diets",
+								"1"
+							]
+						},
+						"description": "请求此接口获取配餐详情，提供Token以获取身体数据具体计算费用。"
+					},
+					"response": [
+						{
+							"name": "获取配餐详情",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_host}}/diets/1",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"diets",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.16.1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "private, must-revalidate"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Jan 2020 15:33:14 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1580139254"
+								},
+								{
+									"key": "ETag",
+									"value": "\"b2b03b6d0178cb9b5ff8c31ecec7cfad27cc4195\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"cover\": \"https://gym.eeyes.xyz/storage/photo/recipes/cover-1.png\",\n        \"price\": \"195-195\",\n        \"description\": null,\n        \"details\": null\n    }\n}"
+						}
+					]
 				}
 			],
 			"protocolProfileBehavior": {}

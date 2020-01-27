@@ -1,0 +1,61 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Handlers\AlgorithmHandler;
+use App\Models\Ingredient;
+use App\Models\Recipe;
+use Illuminate\Http\Request;
+use App\Transformers\DietTransformer;
+use Illuminate\Support\Facades\Auth;
+
+class DietsController extends Controller
+{
+    /**
+     * @param Request $request
+     * @return \Dingo\Api\Http\Response
+     */
+    public function index(Request $request)
+    {
+        $diets = Recipe::all();
+
+        $diets->forPage($request->page ?? 1, $request->per_page ?? 20);
+
+        foreach ($diets as $diet) {
+            $price = 0;
+
+            foreach (['breakfast', 'lunch', 'dinner'] as $item) {
+                foreach ($diet->$item['ingredients'] as $ingredient) {
+                    $price += $ingredient['min'] * Ingredient::find($ingredient['id'])->price;
+                }
+            }
+
+            $diet->price = $price . '-' . ($price + $diet->cook_cost);
+        }
+
+        return $this->response->collection($diets, new DietTransformer('collection'));
+    }
+
+    /**
+     * @param Recipe $recipe
+     * @return \Dingo\Api\Http\Response
+     */
+    public function show(Recipe $recipe)
+    {
+        $handler = new AlgorithmHandler();
+        $health = Auth::guard('api')->user()->health;
+        $diet = $handler->calculate_dist($health, $recipe);
+
+        $price = 0;
+
+        foreach (['breakfast', 'lunch', 'dinner'] as $item) {
+            foreach ($diet->$item as $ingredient) {
+                $price += $ingredient['amount'] * Ingredient::find($ingredient['id'])->price;
+            }
+        }
+
+        $recipe->price = $price . '-' . ($price + $recipe->cook_cost);
+
+        return $this->response->item($recipe, new DietTransformer('item'));
+    }
+}

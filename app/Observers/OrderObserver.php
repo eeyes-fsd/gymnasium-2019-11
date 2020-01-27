@@ -2,10 +2,9 @@
 
 namespace App\Observers;
 
-use App\Handlers\AlgorithmHandler;
 use App\Models\Order;
 use App\Models\Recipe;
-use App\Models\User;
+use App\Handlers\AlgorithmHandler;
 use Illuminate\Support\Facades\DB;
 
 class OrderObserver

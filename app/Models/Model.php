@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model as BaseModel;
  * @method static static find(int $id)
  * @method static static findOrFail(int $id)
  * @method static \Illuminate\Database\Eloquent\Builder where(...$params)
+ * @method static \Illuminate\Contracts\Pagination\LengthAwarePaginator|static[] paginate(int $per_page)
  *
  * @property int id
  * @property \Carbon\Carbon $created_at

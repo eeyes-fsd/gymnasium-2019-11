@@ -24,7 +24,10 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'recipes' => 'array',
+            'diets' => 'array',
+            'ingredients' => 'array',
+            'address_id' => 'numeric'
         ];
     }
 }

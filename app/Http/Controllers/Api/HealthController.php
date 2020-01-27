@@ -20,7 +20,7 @@ class HealthController extends Controller
     {
         switch ($detail) {
             case 'intake':
-                if (!$health = Auth::user()->health) {
+                if (!$health = Auth::guard('api')->user()->health) {
                     return $this->response->noContent();
                 }
                 $intake = $health->intake;

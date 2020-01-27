@@ -58,8 +58,9 @@ $api->version('v1', [
         //套餐路由
         $api->get('recipes/{type?}', 'RecipesController@index')
             ->name('api.recipes.index');
-        $api->get('recipes/{recipe}/details', 'RecipesController@show')
-            ->name('api.recipes.show');
+
+        $api->get('diets', 'DietsController@index')
+            ->name('api.diets.index');
 
         $api->group([
             'middleware' => 'api.auth',
@@ -110,6 +111,12 @@ $api->version('v1', [
                 ->name('api.topics.update');
             $api->delete('topics/{topic}', 'TopicsController@destroy')
                 ->name('api.topics.delete');
+
+            $api->get('diets/{recipe}', 'DietsController@show')
+                ->name('api.diets.show');
+
+            $api->get('recipes/{recipe}/details', 'RecipesController@show')
+                ->name('api.recipes.show');
 
         });
     });

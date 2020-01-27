@@ -46,21 +46,24 @@ class RecipeTransformer extends TransformerAbstract
                 ];
 
             case 'item':
-                return [
+                    return [
                     'id' => $recipe->id,
                     'name' => $recipe->name,
                     'cover' => $recipe->cover,
                     'breakfast' => [
+                        'nutrient' => $recipe->breakfast['nutrient'],
                         'ingredients' => $recipe->breakfast['ingredients'],
                         'photo' => $recipe->breakfast['cover'],
                         'step' => $recipe->breakfast_step,
                     ],
                     'lunch' => [
+                        'nutrient' => $recipe->lunch['nutrient'],
                         'ingredients' => $recipe->lunch['ingredients'],
                         'photo' => $recipe->lunch['cover'],
                         'step' => $recipe->lunch_step,
                     ],
                     'dinner' => [
+                        'nutrient' => $recipe->dinner['nutrient'],
                         'ingredients' => $recipe->dinner['ingredients'],
                         'photo' => $recipe->dinner['cover'],
                         'step' => $recipe->dinner_step,

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Address;
 use App\Models\Diet;
 use App\Models\Ingredient;
 use App\Models\Order;
@@ -71,24 +72,36 @@ class OrdersController extends Controller
         $fee = 0; $details = []; $deliver = false;
 
         foreach ($request->recipes as $recipe_) {
-            $recipe = Recipe::findOrFail($recipe_['id']);
-            $details['recipes'] = $recipe_['id'];
+            if ($recipe_ == 0) {
+                $recipes = Recipe::all();
+
+                foreach ($recipes as $r) {
+                    $details['recipes'][] = $r->id;
+                    $fee += $r->price;
+                }
+
+                break;
+            }
+
+            $recipe = Recipe::findOrFail($recipe_);
+            $details['recipes'][] = $recipe_;
             $fee += $recipe->price;
         }
 
         foreach ($request->diets as $diet_) {
             $deliver = true;
             $fee += $this->calculate_cost($diet_, true);
-            $details['meals'] = $diet_;
+            $details['meals'][] = $diet_;
         }
 
         foreach ($request->ingredients as $ingredient_) {
             $deliver = true;
             $fee += $this->calculate_cost($ingredient_);
-            $details['ingredients'] = $ingredient_;
+            $details['ingredients'][] = $ingredient_;
         }
 
         //TODO 添加运费计算
+        if ($deliver && !Address::find($request->address_id)) abort(404, '地址未找到');
         //if ($deliver) $fee += ;
 
         Order::create([

@@ -130,4 +130,16 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany('App\Models\Topic', 'user_id');
     }
+
+    /**
+     * @param Recipe $recipe
+     * @return bool
+     */
+    public function has_recipe(Recipe $recipe)
+    {
+        return DB::table('recipe_user')
+            ->where('user_id', $this->id)
+            ->where('recipe_id', $recipe->id)
+            ->exists();
+    }
 }
