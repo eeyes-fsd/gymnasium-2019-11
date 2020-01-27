@@ -375,19 +375,16 @@ class AlgorithmHandler
     /**
      * @param Health $health
      * @param Recipe $recipe
-     * @return \Illuminate\Support\Collection
+     * @return \App\Models\Diet
      */
     public function calculate_dist(Health $health, Recipe $recipe)
     {
         $user_id = $health->user->id;
-        $result = collect();
 
         $diet = new \App\Models\Diet([
             'user_id' => $user_id,
             'recipe_id' => $recipe->id,
         ]);
-
-        $result->prepend($diet, 'diet');
 
         $intakes = $health->intake;
         $ratio = count($intakes['ratio']) > 1 ? \Illuminate\Support\Facades\Cache::get('user:' . $user_id . ':intake_lt') : $intakes['ratio'][0][0];
@@ -415,18 +412,10 @@ class AlgorithmHandler
                 return array('id' => $n['id'], 'amount' => (int)$d);
             }, ($recipe->$name)['ingredients'], $dist);
 
-            $id = $name . '_id';
-
-            $meal = new \App\Models\Meal([
-                'ingredients' => $meal_ingredients,
-            ]);
-
-            $result->prepend($meal, $name);
-
-            $diet->$id = $meal->id;
+            $diet->$name = $meal_ingredients;
         }
 
-        return $result;
+        return $diet;
     }
 
     /**

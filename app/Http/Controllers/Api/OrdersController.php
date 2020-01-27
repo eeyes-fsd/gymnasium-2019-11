@@ -47,11 +47,11 @@ class OrdersController extends Controller
         if (!$diet = Diet::where('recipe_id', $diet_recipe->id)->where('user_id', Auth::id())->first()) {
             $handler = new \App\Handlers\AlgorithmHandler();
             $result = $handler->calculate_dist(Auth::guard('api')->user()->health, $diet_recipe);
-            $diet = $result->diet;
+            $diet = $result;
         }
 
         foreach (['breakfast', 'lunch', 'dinner'] as $name) {
-            foreach (($diet->$name)->ingredients as $item) {
+            foreach ($diet->$name as $item) {
                 $ingredient = Ingredient::find($item['id']);
                 $fee += $ingredient->price * $item['amount'];
             }
@@ -107,7 +107,7 @@ class OrdersController extends Controller
             'notify_url' => app('Dingo\Api\Routing\UrlGenerator')->version('v1')->route('api.orders.callback', $order_id->toString()),
             'trade_type' => 'JSAPI',
         ];
-
+        
         $result = $payment->order->unify($pay_info);
         if (isset($result['errno'])) {
             return $this->response->errorInternal('支付接口调用失败，请联系管理员');

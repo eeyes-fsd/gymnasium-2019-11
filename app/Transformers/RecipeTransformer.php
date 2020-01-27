@@ -20,14 +20,14 @@ class RecipeTransformer extends TransformerAbstract
         switch ($this->type){
             case 'collection':
                 $ingredients = [];
-                foreach ($recipe->breakfast as $ingredient) {
-                    $ingredients[] = $ingredient;
+                foreach ($recipe->breakfast['ingredients'] as $ingredient) {
+                    $ingredients[] = $ingredient['id'];
                 }
-                foreach ($recipe->lunch as $ingredient) {
-                    $ingredients[] = $ingredient;
+                foreach ($recipe->lunch['ingredients'] as $ingredient) {
+                    $ingredients[] = $ingredient['id'];
                 }
-                foreach ($recipe->dinner as $ingredient) {
-                    $ingredients[] = $ingredient;
+                foreach ($recipe->dinner['ingredients'] as $ingredient) {
+                    $ingredients[] = $ingredient['id'];
                 }
 
                 $ingredients = collect($ingredients)->unique();
@@ -53,31 +53,16 @@ class RecipeTransformer extends TransformerAbstract
                     'breakfast' => [
                         'ingredients' => $recipe->breakfast->ingredients,
                         'photo' => $recipe->breakfast->photo,
-                        'nutrient' =>[
-                            'fat' => $recipe->breakfast->fat,
-                            'protein' => $recipe->breakfast->protein,
-                            'carbohydrate' => $recipe->breakfast->carbohydrate,
-                        ],
                         'step' => $recipe->breakfast->step,
                     ],
                     'lunch' => [
                         'ingredients' => $recipe->lunch->ingredients,
                         'photo' => $recipe->lunch->photo,
-                        'nutrient' =>[
-                            'fat' => $recipe->breakfast->fat,
-                            'protein' => $recipe->breakfast->protein,
-                            'carbohydrate' => $recipe->breakfast->carbohydrate,
-                        ],
                         'step' => $recipe->lunch->step,
                     ],
                     'dinner' => [
                         'ingredients' => $recipe->dinner->ingredients,
                         'photo' => $recipe->dinner->photo,
-                        'nutrient' =>[
-                            'fat' => $recipe->breakfast->fat,
-                            'protein' => $recipe->breakfast->protein,
-                            'carbohydrate' => $recipe->breakfast->carbohydrate,
-                        ],
                         'step' => $recipe->dinner->step,
                     ],
                 ];

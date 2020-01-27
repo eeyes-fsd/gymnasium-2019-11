@@ -5,26 +5,53 @@ namespace App\Models;
 class Diet extends Model
 {
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @param $meal
      */
-    public function breakfast()
+    public function setBreakfastAttribute($meal)
     {
-        return $this->belongsTo('App\Models\Meal','breakfast_id');
+        $this->attributes['breakfast'] = serialize($meal);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @param $meal
+     * @return mixed
      */
-    public function lunch()
+    public function getBreakfastAttribute($meal)
     {
-        return $this->belongsTo('App\Models\Meal','lunch_id');
+        return unserialize($meal);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @param $meal
      */
-    public function dinner()
+    public function setLunchAttribute($meal)
     {
-        return $this->belongsTo('App\Models\Meal','dinner_id');
+        $this->attributes['lunch'] = serialize($meal);
+    }
+
+    /**
+     * @param $meal
+     * @return mixed
+     */
+    public function getLunchAttribute($meal)
+    {
+        return unserialize($meal);
+    }
+
+    /**
+     * @param $meal
+     */
+    public function setDinnerAttribute($meal)
+    {
+        $this->attributes['dinner'] = serialize($meal);
+    }
+
+    /**
+     * @param $meal
+     * @return mixed
+     */
+    public function getDinnerAttribute($meal)
+    {
+        return unserialize($meal);
     }
 }
