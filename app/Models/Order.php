@@ -11,6 +11,7 @@ namespace App\Models;
  * @property int $user_id
  * @property int $address_id
  * @property User $user
+ * @property int $status
  * @property Address $address
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at

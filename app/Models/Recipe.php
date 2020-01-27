@@ -10,11 +10,13 @@ namespace App\Models;
  * @property string $name
  * @property string $cover
  * @property int $price
- * @property int $cook_cost
  * @property string | null $description
  * @property array $breakfast
+ * @property string $breakfast_step
  * @property array $lunch
+ * @property string $lunch_step
  * @property array $dinner
+ * @property string $dinner_step
  * @property \Illuminate\Database\Eloquent\Collection $users
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at

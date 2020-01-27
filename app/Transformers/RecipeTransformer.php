@@ -51,19 +51,19 @@ class RecipeTransformer extends TransformerAbstract
                     'name' => $recipe->name,
                     'cover' => $recipe->cover,
                     'breakfast' => [
-                        'ingredients' => $recipe->breakfast->ingredients,
-                        'photo' => $recipe->breakfast->photo,
-                        'step' => $recipe->breakfast->step,
+                        'ingredients' => $recipe->breakfast['ingredients'],
+                        'photo' => $recipe->breakfast['cover'],
+                        'step' => $recipe->breakfast_step,
                     ],
                     'lunch' => [
-                        'ingredients' => $recipe->lunch->ingredients,
-                        'photo' => $recipe->lunch->photo,
-                        'step' => $recipe->lunch->step,
+                        'ingredients' => $recipe->lunch['ingredients'],
+                        'photo' => $recipe->lunch['cover'],
+                        'step' => $recipe->lunch_step,
                     ],
                     'dinner' => [
-                        'ingredients' => $recipe->dinner->ingredients,
-                        'photo' => $recipe->dinner->photo,
-                        'step' => $recipe->dinner->step,
+                        'ingredients' => $recipe->dinner['ingredients'],
+                        'photo' => $recipe->dinner['cover'],
+                        'step' => $recipe->dinner_step,
                     ],
                 ];
 

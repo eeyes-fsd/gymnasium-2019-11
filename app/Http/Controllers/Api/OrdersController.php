@@ -46,8 +46,7 @@ class OrdersController extends Controller
         $diet_recipe = Recipe::findOrFail($diet_['id']);
         if (!$diet = Diet::where('recipe_id', $diet_recipe->id)->where('user_id', Auth::id())->first()) {
             $handler = new \App\Handlers\AlgorithmHandler();
-            $result = $handler->calculate_dist(Auth::guard('api')->user()->health, $diet_recipe);
-            $diet = $result;
+            $diet = $handler->calculate_dist(Auth::guard('api')->user()->health, $diet_recipe);
         }
 
         foreach (['breakfast', 'lunch', 'dinner'] as $name) {
@@ -107,7 +106,7 @@ class OrdersController extends Controller
             'notify_url' => app('Dingo\Api\Routing\UrlGenerator')->version('v1')->route('api.orders.callback', $order_id->toString()),
             'trade_type' => 'JSAPI',
         ];
-        
+
         $result = $payment->order->unify($pay_info);
         if (isset($result['errno'])) {
             return $this->response->errorInternal('支付接口调用失败，请联系管理员');
@@ -123,7 +122,7 @@ class OrdersController extends Controller
     {
         $payment = \EasyWeChat::payment();
 
-        $payment->handlePaidNotify(function ($message, $fail) use ($payment){
+        $payment->handlePaidNotify(function ($message, $fail) use ($payment) {
             if (!$order = Order::find($message['out_trade_no'])) {
                 return true;
             }

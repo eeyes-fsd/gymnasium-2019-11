@@ -25,6 +25,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property Collection $topics
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ *
+ * @method static static find(int $id)
  */
 class User extends Authenticatable implements JWTSubject
 {
