@@ -21,8 +21,12 @@ class DietTransformer extends TransformerAbstract
             case 'item':
                 return [
                     'id' => $recipe->id,
+                    'name' => $recipe->name,
                     'cover' => $recipe->cover,
+                    'low_price' => $recipe->ingredients_price,
+                    'up_price' => $recipe->diet_price,
                     'price' => $recipe->price,
+                    'weight' => $recipe->weight,
                     'description' => $recipe->description,
                     'details' => $recipe->breakfast_step,
                 ];
@@ -31,7 +35,10 @@ class DietTransformer extends TransformerAbstract
             case 'collection':
                 return [
                     'id' => $recipe->id,
+                    'name' => $recipe->name,
                     'cover' => $recipe->cover,
+                    'low_price' => $recipe->ingredients_price,
+                    'up_price' => $recipe->diet_price,
                     'price' => $recipe->price,
                     'description' => $recipe->description,
                 ];

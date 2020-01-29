@@ -42,6 +42,9 @@ $api->version('v1', [
             return \Illuminate\Support\Facades\DB::table('habits')->get();
         });
 
+        $api->post('order/callback', 'OrdersController@callback')
+            ->name('api.orders.callback');
+
         $api->get('topics', 'TopicsController@index')
             ->name('api.topics.index');
         $api->get('topics/{topic}', 'TopicsController@show')
@@ -100,10 +103,10 @@ $api->version('v1', [
                 ->name('api.orders.index');
             $api->get('orders/{order}', 'OrdersController@show')
                 ->name('api.orders.show');
+            $api->patch('orders/{order}/{action}', 'OrdersController@update')
+                ->name('api.orders.update');
             $api->post('orders', 'OrdersController@store')
                 ->name('api.orders.store');
-            $api->post('order/{order}/callback', 'OrdersController@callback')
-                ->name('api.orders.callback');
 
             $api->post('topics', 'TopicsController@store')
                 ->name('api.topics.store');

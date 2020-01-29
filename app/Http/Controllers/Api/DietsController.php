@@ -30,7 +30,8 @@ class DietsController extends Controller
                 }
             }
 
-            $diet->price = $price . '-' . ($price + $diet->cook_cost);
+            $diet->ingredients_price = $price;
+            $diet->diet_price = $price + $diet->cook_cost;
         }
 
         return $this->response->collection($diets, new DietTransformer('collection'));
@@ -46,15 +47,18 @@ class DietsController extends Controller
         $health = Auth::guard('api')->user()->health;
         $diet = $handler->calculate_dist($health, $recipe);
 
-        $price = 0;
+        $price = 0; $weight = 0;
 
         foreach (['breakfast', 'lunch', 'dinner'] as $item) {
             foreach ($diet->$item as $ingredient) {
                 $price += $ingredient['amount'] * Ingredient::find($ingredient['id'])->price;
+                $weight += $ingredient['amount'];
             }
         }
 
-        $recipe->price = $price . '-' . ($price + $recipe->cook_cost);
+        $recipe->ingredients_price = $price;
+        $recipe->diet_price = $price + $diet->cook_cost;
+        $recipe->weight = $weight;
 
         return $this->response->item($recipe, new DietTransformer('item'));
     }

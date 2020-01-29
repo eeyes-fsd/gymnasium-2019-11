@@ -27,7 +27,8 @@ class OrderRequest extends FormRequest
             'recipes' => 'array',
             'diets' => 'array',
             'ingredients' => 'array',
-            'address_id' => 'numeric'
+            'address_id' => 'numeric',
+            'deliver_at' => 'date_format:Y-m-d\TH:i:s'
         ];
     }
 }

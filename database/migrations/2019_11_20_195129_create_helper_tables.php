@@ -60,6 +60,24 @@ class CreateHelperTables extends Migration
             $table->float('protein')->comment('蛋白质 kCal/g');
             $table->float('fat')->comment('脂肪 kCal/g');
         });
+
+        Schema::create('deliver_fee', function (Blueprint $table) {
+            $table->float('lb');
+            $table->float('ub');
+            $table->float('fee');
+        });
+
+        Schema::create('weight_fee', function (Blueprint $table) {
+            $table->float('lb');
+            $table->float('ub');
+            $table->float('fee');
+        });
+
+        Schema::create('time_fee', function (Blueprint $table) {
+            $table->float('lb');
+            $table->float('ub');
+            $table->float('fee');
+        });
     }
 
     /**
@@ -73,5 +91,8 @@ class CreateHelperTables extends Migration
         Schema::dropIfExists('purposes');
         Schema::dropIfExists('ingredients');
         Schema::dropIfExists('habits');
+        Schema::dropIfExists('deliver_fee');
+        Schema::dropIfExists('weight_fee');
+        Schema::dropIfExists('time_fee');
     }
 }

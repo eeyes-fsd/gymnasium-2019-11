@@ -16,8 +16,12 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->integer('user_id');
+            $table->integer('service_id')->comment('服务点ID');
+            $table->integer('fee')->comment('订单总价');
             $table->integer('address_id')->nullable()->comment('送货地址');
+            $table->dateTime('deliver_at')->nullable()->comment('配送时间');
             $table->longText('details');
+            $table->uuid('refund_no')->nullable()->comment('退款单号');
             $table->smallInteger('status')->comment('订单状态：0-未支付，1-已支付，-1-已取消');
             $table->timestamps();
         });

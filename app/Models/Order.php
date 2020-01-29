@@ -7,19 +7,24 @@ namespace App\Models;
  * @package App\Models
  *
  * @property string $id
+ * @property int $fee
+ * @property int $status
  * @property array $details
  * @property int $user_id
+ * @property int $service_id
  * @property int $address_id
  * @property User $user
- * @property int $status
+ * @property Service $service
  * @property Address $address
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property \Illuminate\Support\Carbon $deliver_at
  */
 class Order extends Model
 {
     protected $keyType = 'string';
     protected $guarded = ['created_at', 'updated_at'];
+    protected $dates = [
+        'deliver_at',
+    ];
 
     /**
      * @param array $details
@@ -52,5 +57,13 @@ class Order extends Model
     public function address()
     {
         return $this->belongsTo('App\Models\Address', 'address_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function service()
+    {
+        return $this->belongsTo('App\Models\Service', 'service_id');
     }
 }

@@ -21,6 +21,8 @@ class CreateAddressesTable extends Migration
             $table->char('gender')->comment('性别（男 -> \'m\', 女 -> \'f\'）');
             $table->string('street')->comment('地址行');
             $table->string('details')->comment('详细地址');
+            $table->double('longitude')->comment('地址经度');
+            $table->double('latitude')->comment('地址纬度');
             $table->timestamps();
         });
     }

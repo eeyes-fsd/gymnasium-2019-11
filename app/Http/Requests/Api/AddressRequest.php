@@ -19,7 +19,9 @@ class AddressRequest extends Request
             ],
             'gender' => 'required|in:f,m',
             'street' => 'required',
-            'details' => 'required'
+            'details' => 'required',
+            'longitude' => 'required|numeric',
+            'latitude' => 'required|numeric',
         ];
     }
 }

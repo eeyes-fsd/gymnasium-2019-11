@@ -14,6 +14,8 @@ namespace App\Models;
  * @property string $phone
  * @property string $street
  * @property string $details
+ * @property double $longitude
+ * @property double $latitude
  * @property \Illuminate\Database\Eloquent\Collection $orders
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
