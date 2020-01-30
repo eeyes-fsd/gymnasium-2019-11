@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Handlers\AddressHandler;
+use App\Handlers\AlgorithmHandler;
 use App\Models\Address;
 use App\Models\Diet;
 use App\Models\Ingredient;
 use App\Models\Order;
+use App\Models\Variable;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -50,7 +52,7 @@ class OrdersController extends Controller
 
         $diet_recipe = Recipe::findOrFail($diet_['id']);
         if (!$diet = Diet::where('recipe_id', $diet_recipe->id)->where('user_id', Auth::id())->first()) {
-            $handler = new \App\Handlers\AlgorithmHandler();
+            $handler = new AlgorithmHandler();
             $diet = $handler->calculate_dist(Auth::guard('api')->user()->health, $diet_recipe);
         }
 
@@ -74,11 +76,21 @@ class OrdersController extends Controller
     {
         $order_id = Uuid::uuid1();
         $fee = 0; $details = []; $deliver = false; $weight = 0;
+        $discount = Variable::where('name', 'recipe_discount')->first()->content;
+        // 准备免费送食谱数据
+        $free_recipes = [];
+        if ($discount['free']) $free_recipes = array_merge($request->diets, $request->ingredients);
 
         foreach ($request->recipes as $recipe_) {
             if ($recipe_ == 0) {
                 $recipes = Recipe::all();
                 foreach ($recipes as $r) {
+                    if (Auth::guard('api')->user()->hasRecipe($r)) {
+                        continue;
+                    }
+                    if ($discount['free'] && in_array($recipe_, $free_recipes)) {
+                        continue;
+                    }
                     $details['recipes'][] = $r->id;
                     $fee += $r->price;
                 }
@@ -86,8 +98,21 @@ class OrdersController extends Controller
             }
 
             $recipe = Recipe::findOrFail($recipe_);
+            if (Auth::guard('api')->user()->hasRecipe($recipe)) {
+                continue;
+            }
+            if ($discount['free'] && in_array($recipe_, $free_recipes)) {
+                continue;
+            }
             $details['recipes'][] = $recipe_;
             $fee += $recipe->price;
+        }
+
+        if (count($details['recipes']) >= 3) {
+            $fee *= $discount[3];
+        }
+        if ($request->recipes[0] == 0) {
+            $fee *= $discount['all'];
         }
 
         foreach ($request->diets as $diet_) {

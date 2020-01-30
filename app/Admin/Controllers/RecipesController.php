@@ -61,23 +61,23 @@ class RecipesController extends AdminController
         $show->field('id', 'Id');
         $show->field('price', '食谱价格');
         $show->field('name', '食谱名称');
-        $show->field('cover', '食谱封面');
+        $show->field('cover', '食谱封面')->image();
         $show->field('description', '食谱描述');
-        $show->field('breakfast_cover', '早餐封面图');
+        $show->field('breakfast_cover', '早餐封面图')->image();
         $show->field('breakfast', '早餐内容')->as(function ($ingredients) {
             return view('recipe', compact('ingredients'));
-        });
-        $show->field('breakfast_step', '早餐制作步骤');
-        $show->field('lunch_cover', '午餐封面图');
+        })->unescape();
+        $show->field('breakfast_step', '早餐制作步骤')->unescape();
+        $show->field('lunch_cover', '午餐封面图')->image();
         $show->field('lunch', '午餐内容')->as(function ($ingredients) {
             return view('recipe', compact('ingredients'));
-        });
-        $show->field('lunch_step', '午餐制作步骤');
-        $show->field('dinner_cover', '晚餐封面图');
+        })->unescape();
+        $show->field('lunch_step', '午餐制作步骤')->unescape();
+        $show->field('dinner_cover', '晚餐封面图')->image();
         $show->field('dinner', '晚餐内容')->as(function ($ingredients) {
             return view('recipe', compact('ingredients'));
-        });
-        $show->field('dinner_step', '晚餐制作步骤');
+        })->unescape();
+        $show->field('dinner_step', '晚餐制作步骤')->unescape();
         $show->field('cook_cost', '烹饪加工费用（分）');
         $show->field('created_at', 'Created at');
         $show->field('updated_at', 'Updated at');
@@ -105,24 +105,24 @@ class RecipesController extends AdminController
 
         $form->number('price', '食谱价格');
         $form->text('name', '食谱名称');
-        $form->image('cover', '食谱封面')->move('public/recipes');
+        $form->image('cover', '食谱封面')->move('public/recipes')->uniqueName();
         $form->text('description', '食谱描述');
-        $form->image('breakfast_cover')->move('public/meals');
+        $form->image('breakfast_cover')->move('public/meals')->uniqueName();
         $form->table('breakfast', '早餐', function (Form\NestedForm $table) use ($load_ingredients) {
-            $table->select('ingredients', '食材')->options($load_ingredients);
-            $table->number('最少用量 g');
+            $table->select('id', '食材')->options($load_ingredients);
+            $table->number('min', '最少用量 g');
         });
         $form->simditor('breakfast_step', '早餐制作步骤');
-        $form->image('lunch_cover')->move('public/meals');
+        $form->image('lunch_cover')->move('public/meals')->uniqueName();
         $form->table('lunch', '午餐', function (Form\NestedForm $table) use ($load_ingredients) {
-            $table->select('ingredients', '食材')->options($load_ingredients);
-            $table->number('最少用量 g');
+            $table->select('id', '食材')->options($load_ingredients);
+            $table->number('min', '最少用量 g');
         });
         $form->simditor('lunch_step', '午餐制作步骤');
-        $form->image('dinner_cover')->move('public/meals');
+        $form->image('dinner_cover')->move('public/meals')->uniqueName();
         $form->table('dinner', '晚餐', function (Form\NestedForm $table) use ($load_ingredients) {
-            $table->select('ingredients', '食材')->options($load_ingredients);
-            $table->number('最少用量 g');
+            $table->select('id', '食材')->options($load_ingredients);
+            $table->number('min', '最少用量 g');
         });
         $form->simditor('dinner_step', '晚餐制作步骤');
         $form->number('cook_cost', '烹饪价格');

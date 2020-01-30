@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Handlers\AlgorithmHandler;
-use App\Models\Ingredient;
 use App\Models\Recipe;
+use App\Models\Ingredient;
 use Illuminate\Http\Request;
-use App\Transformers\DietTransformer;
+use App\Handlers\AlgorithmHandler;
 use Illuminate\Support\Facades\Auth;
+use App\Transformers\DietTransformer;
 
 class DietsController extends Controller
 {

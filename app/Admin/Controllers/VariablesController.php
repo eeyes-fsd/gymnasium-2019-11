@@ -43,13 +43,15 @@ class VariablesController extends AdminController
      */
     protected function detail($id)
     {
-        $show = new Show(Order::findOrFail($id));
+        $show = new Show(Variable::findOrFail($id));
 
         $show->field('id', __('Id'));
-        $show->field('user_id', __('User id'));
-        $show->field('address_id', __('Address id'));
-        $show->field('details', __('Details'));
-        $show->field('status', __('Status'));
+        $show->field('name', __('变量名'));
+        $show->field('content', __('变量内容'))->as(function ($variables) {
+            return view('variable', compact('variables'));
+        })->unescape();
+        $show->field('setter', __('变量存储器'));
+        $show->field('getter', __('变量获取器'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
@@ -63,12 +65,12 @@ class VariablesController extends AdminController
      */
     protected function form()
     {
-        $form = new Form(new Order);
+        $form = new Form(new Variable);
 
-        $form->number('user_id', __('User id'));
-        $form->number('address_id', __('Address id'));
-        $form->textarea('details', __('Details'));
-        $form->number('status', __('Status'));
+        $form->text('name', '变量名');
+        $form->keyValue('content', '变量内容');
+        $form->text('setter', '变量存储器');
+        $form->text('getter', '变量获取器');
 
         return $form;
     }

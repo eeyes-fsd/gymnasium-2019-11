@@ -49,7 +49,7 @@ class Recipe extends Model
      */
     public function setBreakfastAttribute($breakfast)
     {
-        $this->attributes['breakfast'] = serialize($breakfast);
+        $this->attributes['breakfast'] = serialize(array_values($breakfast));
     }
 
     /**
@@ -66,7 +66,7 @@ class Recipe extends Model
      */
     public function setLunchAttribute($lunch)
     {
-        $this->attributes['lunch'] = serialize($lunch);
+        $this->attributes['lunch'] = serialize(array_values($lunch));
     }
 
     /**
@@ -83,6 +83,6 @@ class Recipe extends Model
      */
     public function setDinnerAttribute($dinner)
     {
-        $this->attributes['dinner'] = serialize($dinner);
+        $this->attributes['dinner'] = serialize(array_values($dinner));
     }
 }
