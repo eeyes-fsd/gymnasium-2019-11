@@ -25,7 +25,7 @@ class DietsController extends Controller
             $price = 0;
 
             foreach (['breakfast', 'lunch', 'dinner'] as $item) {
-                foreach ($diet->$item['ingredients'] as $ingredient) {
+                foreach ($diet->$item as $ingredient) {
                     $price += $ingredient['min'] * Ingredient::find($ingredient['id'])->price;
                 }
             }

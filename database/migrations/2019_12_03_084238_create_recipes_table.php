@@ -20,10 +20,13 @@ class CreateRecipesTable extends Migration
             $table->string('cover')->comment('封面图');
             $table->string('description')->nullable()->comment('描述');
             $table->text('breakfast')->comment('早餐内容');
+            $table->string('breakfast_cover')->comment('早餐封面');
             $table->longText('breakfast_step')->comment('烹饪方法(HTML Entity)');
             $table->text('lunch')->comment('午餐内容');
+            $table->string('lunch_cover')->comment('午餐封面');
             $table->longText('lunch_step')->comment('烹饪方法(HTML Entity)');
             $table->text('dinner')->comment('晚餐内容');
+            $table->string('dinner_cover')->comment('晚餐封面');
             $table->longText('dinner_step')->comment('烹饪方法(HTML Entity)');
             $table->integer('cook_cost')->comment('烹饪价格（分）');
             $table->timestamps();

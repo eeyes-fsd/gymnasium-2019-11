@@ -59,6 +59,7 @@ class CreateHelperTables extends Migration
             $table->float('carbohydrate')->comment('碳水化合物 kCal/g');
             $table->float('protein')->comment('蛋白质 kCal/g');
             $table->float('fat')->comment('脂肪 kCal/g');
+            $table->timestamps();
         });
 
         Schema::create('deliver_fee', function (Blueprint $table) {

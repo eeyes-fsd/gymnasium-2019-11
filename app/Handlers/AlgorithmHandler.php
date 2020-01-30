@@ -394,7 +394,7 @@ class AlgorithmHandler
 
         foreach (['breakfast', 'lunch', 'dinner'] as $name) {
             $nutrition = array([], [], []); $lb = array();
-            foreach (($recipe->$name)['ingredients'] as $ingredient) {
+            foreach (($recipe->$name) as $ingredient) {
                 $ingredient_ = \App\Models\Ingredient::find($ingredient['id']);
                 $lb[] = $ingredient['min'];
                 $nutrition[0][] = $ingredient_->carbohydrate;
@@ -410,7 +410,7 @@ class AlgorithmHandler
 
             $meal_ingredients = array_map(function ($n, $d) {
                 return array('id' => $n['id'], 'amount' => (int)$d);
-            }, ($recipe->$name)['ingredients'], $dist);
+            }, ($recipe->$name), $dist);
 
             $diet->$name = $meal_ingredients;
         }

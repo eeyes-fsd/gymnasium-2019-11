@@ -396,6 +396,40 @@ return [
     |
     */
     'extensions' => [
+        'simditor' => [
+            // Set to false if you want to disable this extension
+            'enable' => true,
+            // Editor configuration
+            'config' => [
+                'upload' => [
+                    'url' => '/api/upload', # example api route: admin/api/upload
+                    'fileKey' => 'upload_file',
+                    'connectionCount' => 3,
+                    'leaveConfirm' => '正在上传，确定要离开吗？'
+                ],
+                'tabIndent' => true,
+                'toolbar' => ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', 'alignment'],
+                'toolbarFloat' => true,
+                'toolbarFloatOffset' => 0,
+                'toolbarHidden' => false,
+                'pasteImage' => true,
+                'cleanPaste' => false,
+            ]
+        ],
+        'latlong' => [
 
+            // Whether to enable this extension, defaults to true
+            'enable' => true,
+
+            // Specify the default provider
+            'default' => 'tencent',
+
+            // According to the selected provider above, fill in the corresponding api_key
+            'providers' => [
+                'tencent' => [
+                    'api_key' => env('TENCENT_MAP_KEY'),
+                ],
+            ]
+        ]
     ],
 ];

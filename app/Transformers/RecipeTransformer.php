@@ -20,13 +20,13 @@ class RecipeTransformer extends TransformerAbstract
         switch ($this->type){
             case 'collection':
                 $ingredients = [];
-                foreach ($recipe->breakfast['ingredients'] as $ingredient) {
+                foreach ($recipe->breakfast as $ingredient) {
                     $ingredients[] = $ingredient['id'];
                 }
-                foreach ($recipe->lunch['ingredients'] as $ingredient) {
+                foreach ($recipe->lunch as $ingredient) {
                     $ingredients[] = $ingredient['id'];
                 }
-                foreach ($recipe->dinner['ingredients'] as $ingredient) {
+                foreach ($recipe->dinner as $ingredient) {
                     $ingredients[] = $ingredient['id'];
                 }
 
@@ -52,20 +52,20 @@ class RecipeTransformer extends TransformerAbstract
                     'cover' => $recipe->cover,
                     'breakfast' => [
                         'nutrient' => $recipe->breakfast['nutrient'],
-                        'ingredients' => $recipe->breakfast['ingredients'],
-                        'photo' => $recipe->breakfast['cover'],
+                        'ingredients' => $recipe->breakfast,
+                        'photo' => $recipe->breakfast_cover,
                         'step' => $recipe->breakfast_step,
                     ],
                     'lunch' => [
                         'nutrient' => $recipe->lunch['nutrient'],
-                        'ingredients' => $recipe->lunch['ingredients'],
-                        'photo' => $recipe->lunch['cover'],
+                        'ingredients' => $recipe->lunch,
+                        'photo' => $recipe->lunch_cover,
                         'step' => $recipe->lunch_step,
                     ],
                     'dinner' => [
                         'nutrient' => $recipe->dinner['nutrient'],
-                        'ingredients' => $recipe->dinner['ingredients'],
-                        'photo' => $recipe->dinner['cover'],
+                        'ingredients' => $recipe->dinner,
+                        'photo' => $recipe->dinner_cover,
                         'step' => $recipe->dinner_step,
                     ],
                 ];

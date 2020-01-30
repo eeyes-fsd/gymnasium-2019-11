@@ -29,7 +29,7 @@ class RecipesController extends Controller
 
         foreach (['breakfast', 'lunch', 'dinner'] as $item) {
             $temp = [];
-            $temp['cover'] = $recipe->$item['cover'];
+            $temp['cover'] = $recipe->$item . 'cover';
             $temp['nutrient'] = ['carbohydrate' => 0,'protein' => 0,'fat' => 0,];
             foreach ($diet->$item as $ingredient) {
                 $ingredient_instance = Ingredient::find($ingredient['id']);
