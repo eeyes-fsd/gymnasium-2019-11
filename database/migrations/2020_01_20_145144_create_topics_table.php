@@ -19,6 +19,7 @@ class CreateTopicsTable extends Migration
             $table->string('title')->comment('话题标题');
             $table->string('short')->nullable()->comment('内容简要');
             $table->longText('body')->comment('话题内容');
+            $table->tinyInteger('status')->comment('话题状态 0-审核中，1-正常，2-举报，3-违规');
             $table->timestamps();
         });
     }

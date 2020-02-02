@@ -83,6 +83,244 @@
 			"protocolProfileBehavior": {}
 		},
 		{
+			"name": "Address",
+			"item": [
+				{
+					"name": "获取地址列表",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzcwODY1MDYsImV4cCI6MTU3NzA5MDEwNiwibmJmIjoxNTc3MDg2NTA2LCJqdGkiOiJrZW9kdjVSY3Z1QzJxdVQxIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.pTlCKGtbLP48JXzLDG-fc6Vbw8VszDYH0DRs4biBZww",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/addresses",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"addresses"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "获取地址列表",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_host}}/addresses",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"addresses"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 20 Nov 2019 13:40:11 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 20 Nov 2019 13:40:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.3.10"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "private, must-revalidate"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1574257271"
+								},
+								{
+									"key": "ETag",
+									"value": "\"5ca11aac6f28adae8dbb80ce7750774aace3993d\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"许志轩\",\n            \"phone\": \"15129877128\",\n            \"gender\": \"先生\",\n            \"details\": \"西19-0625\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"许志轩\",\n            \"phone\": \"15129877128\",\n            \"gender\": \"女士\",\n            \"details\": \"社团办公室\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "创建新地址",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1ODAyNjY5NTYsImV4cCI6MTU4MDI3MDU1NiwibmJmIjoxNTgwMjY2OTU2LCJqdGkiOiIwRFdnMkNJTXhMeFgzSlcyIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Eb7FciJTlcOcBT0P9Odj8nSZ2niDRGWQ8Pn9-IrmuQ4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"XuZhixuan\",\n\t\"phone\": \"15129877128\",\n\t\"gender\": \"f\",\n\t\"street\": \"西安市咸宁西路28号西安交通大学文治书院\",\n\t\"details\": \"西19-0625\",\n\t\"longitude\": 108.983696,\n\t\"latitude\": 34.246258\n}"
+						},
+						"url": {
+							"raw": "{{api_host}}/addresses",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"addresses"
+							]
+						},
+						"description": "请求此接口创建新地址"
+					},
+					"response": []
+				},
+				{
+					"name": "获取地址详情",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzQyNTU2NDQsImV4cCI6MTU3NDI1OTI0NCwibmJmIjoxNTc0MjU1NjQ0LCJqdGkiOiJsaVRvQ0JUR1RBaHIxa09mIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.0ukjKsTkqwy4imTkIYaQ08ircgwXF4z2IAuSwhR8JWs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/addresses/2",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"addresses",
+								"2"
+							]
+						},
+						"description": "请求接口获取地址信息"
+					},
+					"response": []
+				},
+				{
+					"name": "删除地址",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzQyNTU2NDQsImV4cCI6MTU3NDI1OTI0NCwibmJmIjoxNTc0MjU1NjQ0LCJqdGkiOiJsaVRvQ0JUR1RBaHIxa09mIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.0ukjKsTkqwy4imTkIYaQ08ircgwXF4z2IAuSwhR8JWs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/addresses/3",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"addresses",
+								"3"
+							]
+						},
+						"description": "请求此接口删除地址"
+					},
+					"response": []
+				},
+				{
+					"name": "更新地址信息",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzQyNTU2NDQsImV4cCI6MTU3NDI1OTI0NCwibmJmIjoxNTc0MjU1NjQ0LCJqdGkiOiJsaVRvQ0JUR1RBaHIxa09mIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.0ukjKsTkqwy4imTkIYaQ08ircgwXF4z2IAuSwhR8JWs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"XuZhixuan\",\n\t\"phone\": \"18909115689\",\n\t\"gender\": \"f\",\n\t\"details\": \"西19-0625\"\n}"
+						},
+						"url": {
+							"raw": "{{api_host}}/addresses/2",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"addresses",
+								"2"
+							]
+						},
+						"description": "请求此接口更新地址信息"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "User",
 			"item": [
 				{
@@ -1019,7 +1257,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzU0MzA3NDQsImV4cCI6MTU3NTQzNDM0NCwibmJmIjoxNTc1NDMwNzQ0LCJqdGkiOiJxSEx3SEVsalFRc3l0VnVxIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0._fniMxCOcRWCu7xnZbEUUu9U8SLWEmE2G6Fxwvwgks0",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1ODAxNDI5MTQsImV4cCI6MTU4MDE0NjUxNCwibmJmIjoxNTgwMTQyOTE0LCJqdGkiOiIwYmRjelR0RjU0T2RjejNaIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.9-3DOfSWcyPMAoLsap_wpwqKjAYzsEuv9leJE3PGCkQ",
 									"type": "string"
 								}
 							]
@@ -1027,18 +1265,83 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{api_host}}/recipes/{id}/details",
+							"raw": "{{api_host}}/recipes/1/details",
 							"host": [
 								"{{api_host}}"
 							],
 							"path": [
 								"recipes",
-								"{id}",
+								"1",
 								"details"
 							]
 						}
 					},
 					"response": [
+						{
+							"name": "获取套餐详情",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_host}}/recipes/1/details",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"recipes",
+										"1",
+										"details"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.16.1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "private, must-revalidate"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Jan 2020 16:43:33 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1580143450"
+								},
+								{
+									"key": "ETag",
+									"value": "\"9b86a5dd78d79a108941888497240e362f6b9a2c\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"鸡胸肉煎饼\",\n        \"cover\": \"https://gym.eeyes.xyz/storage/photo/recipes/cover-1.png\",\n        \"breakfast\": {\n            \"ingredients\": [\n                {\n                    \"name\": \"鸡脯肉\",\n                    \"amount\": 55\n                },\n                {\n                    \"name\": \"玉米粒\",\n                    \"amount\": 10\n                },\n                {\n                    \"name\": \"小香芹\",\n                    \"amount\": 10\n                },\n                {\n                    \"name\": \"面粉\",\n                    \"amount\": 126\n                },\n                {\n                    \"name\": \"橄榄油\",\n                    \"amount\": 7\n                }\n            ],\n            \"photo\": \"https://gym.eeyes.xyz/storage/photo/meals/meal-1.png\",\n            \"step\": null\n        },\n        \"lunch\": {\n            \"ingredients\": [\n                {\n                    \"name\": \"鸡脯肉\",\n                    \"amount\": 74\n                },\n                {\n                    \"name\": \"玉米粒\",\n                    \"amount\": 10\n                },\n                {\n                    \"name\": \"小香芹\",\n                    \"amount\": 10\n                },\n                {\n                    \"name\": \"面粉\",\n                    \"amount\": 169\n                },\n                {\n                    \"name\": \"橄榄油\",\n                    \"amount\": 10\n                }\n            ],\n            \"photo\": \"https://gym.eeyes.xyz/storage/photo/meals/meal-1.png\",\n            \"step\": null\n        },\n        \"dinner\": {\n            \"ingredients\": [\n                {\n                    \"id\": 1,\n                    \"min\": 50\n                },\n                {\n                    \"id\": 2,\n                    \"min\": 10\n                },\n                {\n                    \"id\": 3,\n                    \"min\": 10\n                },\n                {\n                    \"id\": 4,\n                    \"min\": 40\n                },\n                {\n                    \"id\": 5,\n                    \"min\": 1\n                }\n            ],\n            \"photo\": \"https://gym.eeyes.xyz/storage/photo/meals/meal-1.png\",\n            \"step\": null\n        }\n    }\n}"
+						},
 						{
 							"name": "获取套餐详情",
 							"originalRequest": {
@@ -1387,6 +1690,25 @@
 							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"奥尔良鸡胸肉套餐\",\n            \"cover\": \"http://gym.eeyes.xyz/storage/public/cover_123.png\",\n            \"description\": null\n        }\n    ]\n}"
 						}
 					]
+				},
+				{
+					"name": "获取套餐简略",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/recipes/1/briefs",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"recipes",
+								"1",
+								"briefs"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -1402,7 +1724,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1ODAxMDI4MDMsImV4cCI6MTU4MDEwNjQwMywibmJmIjoxNTgwMTAyODAzLCJqdGkiOiJYeXNKd21ZejZxRVdkYkhQIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.WYOvnUkGgTkTCMhXbzCUAqDU9RRwNtVueqUZia8vf0Y",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1ODAyODQ3OTQsImV4cCI6MTU4MDI4ODM5NCwibmJmIjoxNTgwMjg0Nzk0LCJqdGkiOiIwbUZrSlQzbTVXWm5kdmU2Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.FfYkV-EUzL7MN-Aa2pEl_nG1BtSQ_dXBC-fZoOb1GCE",
 									"type": "string"
 								}
 							]
@@ -1418,7 +1740,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"recipes\": [\n\t\t0\n\t],\n\t\"diets\": [\n\t\t{\n\t\t\t\"id\": 1,\n\t\t\t\"amount\": 5\n\t\t}\n\t],\n\t\"ingredients\": [\n\t\t{\n\t\t\t\"id\": 1,\n\t\t\t\"amount\": 5\n\t\t}\t\n\t],\n\t\"address_id\": 3\n}"
+							"raw": "{\n\t\"recipes\": [\n\t\t0\n\t],\n\t\"diets\": [\n\t\t{\n\t\t\t\"id\": 1,\n\t\t\t\"amount\": 5\n\t\t}\n\t],\n\t\"ingredients\": [\n\t\t{\n\t\t\t\"id\": 1,\n\t\t\t\"amount\": 5\n\t\t}\t\n\t],\n\t\"address_id\": 3,\n\t\"deliver_at\": \"2020-01-29T22:30:15\"\n}"
 						},
 						"url": {
 							"raw": "{{api_host}}/orders",
@@ -1554,6 +1876,66 @@
 								"cd805d7a-24bf-11ea-8bb1-00155deb58cc"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "取消订单",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1ODAyODQ3OTQsImV4cCI6MTU4MDI4ODM5NCwibmJmIjoxNTgwMjg0Nzk0LCJqdGkiOiIwbUZrSlQzbTVXWm5kdmU2Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.FfYkV-EUzL7MN-Aa2pEl_nG1BtSQ_dXBC-fZoOb1GCE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/orders/b6623886-4100-11ea-b251-6014b363d7eb/cancel",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"orders",
+								"b6623886-4100-11ea-b251-6014b363d7eb",
+								"cancel"
+							]
+						},
+						"description": "请求此接口以取消订单，已支付的订单将退款。"
+					},
+					"response": []
+				},
+				{
+					"name": "支付订单",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1ODAyODQ3OTQsImV4cCI6MTU4MDI4ODM5NCwibmJmIjoxNTgwMjg0Nzk0LCJqdGkiOiIwbUZrSlQzbTVXWm5kdmU2Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.FfYkV-EUzL7MN-Aa2pEl_nG1BtSQ_dXBC-fZoOb1GCE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/orders/b6623886-4100-11ea-b251-6014b363d7eb/pay",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"orders",
+								"b6623886-4100-11ea-b251-6014b363d7eb",
+								"pay"
+							]
+						},
+						"description": "请求此接口以支付订单，已支付的订单将引发错误。"
 					},
 					"response": []
 				}
@@ -1717,244 +2099,6 @@
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "Address",
-			"item": [
-				{
-					"name": "获取地址列表",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzcwODY1MDYsImV4cCI6MTU3NzA5MDEwNiwibmJmIjoxNTc3MDg2NTA2LCJqdGkiOiJrZW9kdjVSY3Z1QzJxdVQxIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.pTlCKGtbLP48JXzLDG-fc6Vbw8VszDYH0DRs4biBZww",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{api_host}}/addresses",
-							"host": [
-								"{{api_host}}"
-							],
-							"path": [
-								"addresses"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "获取地址列表",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{api_host}}/addresses",
-									"host": [
-										"{{api_host}}"
-									],
-									"path": [
-										"addresses"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Host",
-									"value": "localhost"
-								},
-								{
-									"key": "Date",
-									"value": "Wed, 20 Nov 2019 13:40:11 GMT"
-								},
-								{
-									"key": "Date",
-									"value": "Wed, 20 Nov 2019 13:40:11 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "close"
-								},
-								{
-									"key": "X-Powered-By",
-									"value": "PHP/7.3.10"
-								},
-								{
-									"key": "Cache-Control",
-									"value": "private, must-revalidate"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "X-RateLimit-Limit",
-									"value": "60"
-								},
-								{
-									"key": "X-RateLimit-Remaining",
-									"value": "59"
-								},
-								{
-									"key": "X-RateLimit-Reset",
-									"value": "1574257271"
-								},
-								{
-									"key": "ETag",
-									"value": "\"5ca11aac6f28adae8dbb80ce7750774aace3993d\""
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"许志轩\",\n            \"phone\": \"15129877128\",\n            \"gender\": \"先生\",\n            \"details\": \"西19-0625\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"许志轩\",\n            \"phone\": \"15129877128\",\n            \"gender\": \"女士\",\n            \"details\": \"社团办公室\"\n        }\n    ]\n}"
-						}
-					]
-				},
-				{
-					"name": "创建新地址",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzcwODY1MDYsImV4cCI6MTU3NzA5MDEwNiwibmJmIjoxNTc3MDg2NTA2LCJqdGkiOiJrZW9kdjVSY3Z1QzJxdVQxIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.pTlCKGtbLP48JXzLDG-fc6Vbw8VszDYH0DRs4biBZww",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"name\": \"XuZhixuan\",\n\t\"phone\": \"15129877128\",\n\t\"gender\": \"f\",\n\t\"street\": \"西安市咸宁西路28号西安交通大学文治书院\",\n\t\"details\": \"西19-0625\"\n}"
-						},
-						"url": {
-							"raw": "{{api_host}}/addresses",
-							"host": [
-								"{{api_host}}"
-							],
-							"path": [
-								"addresses"
-							]
-						},
-						"description": "请求此接口创建新地址"
-					},
-					"response": []
-				},
-				{
-					"name": "获取地址详情",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzQyNTU2NDQsImV4cCI6MTU3NDI1OTI0NCwibmJmIjoxNTc0MjU1NjQ0LCJqdGkiOiJsaVRvQ0JUR1RBaHIxa09mIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.0ukjKsTkqwy4imTkIYaQ08ircgwXF4z2IAuSwhR8JWs",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{api_host}}/addresses/2",
-							"host": [
-								"{{api_host}}"
-							],
-							"path": [
-								"addresses",
-								"2"
-							]
-						},
-						"description": "请求接口获取地址信息"
-					},
-					"response": []
-				},
-				{
-					"name": "删除地址",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzQyNTU2NDQsImV4cCI6MTU3NDI1OTI0NCwibmJmIjoxNTc0MjU1NjQ0LCJqdGkiOiJsaVRvQ0JUR1RBaHIxa09mIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.0ukjKsTkqwy4imTkIYaQ08ircgwXF4z2IAuSwhR8JWs",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{api_host}}/addresses/3",
-							"host": [
-								"{{api_host}}"
-							],
-							"path": [
-								"addresses",
-								"3"
-							]
-						},
-						"description": "请求此接口删除地址"
-					},
-					"response": []
-				},
-				{
-					"name": "更新地址信息",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1NzQyNTU2NDQsImV4cCI6MTU3NDI1OTI0NCwibmJmIjoxNTc0MjU1NjQ0LCJqdGkiOiJsaVRvQ0JUR1RBaHIxa09mIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.0ukjKsTkqwy4imTkIYaQ08ircgwXF4z2IAuSwhR8JWs",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"name\": \"XuZhixuan\",\n\t\"phone\": \"18909115689\",\n\t\"gender\": \"f\",\n\t\"details\": \"西19-0625\"\n}"
-						},
-						"url": {
-							"raw": "{{api_host}}/addresses/2",
-							"host": [
-								"{{api_host}}"
-							],
-							"path": [
-								"addresses",
-								"2"
-							]
-						},
-						"description": "请求此接口更新地址信息"
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
 			"name": "Diets",
 			"item": [
 				{
@@ -2036,6 +2180,69 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"cover\": \"https://gym.eeyes.xyz/storage/photo/recipes/cover-1.png\",\n            \"price\": \"64506450\",\n            \"description\": null\n        }\n    ]\n}"
+						},
+						{
+							"name": "食堂配餐列表",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_host}}/diets",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"diets"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.16.1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "private, must-revalidate"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 28 Jan 2020 05:46:31 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1580190451"
+								},
+								{
+									"key": "ETag",
+									"value": "\"9e4edca24fd7ad4528e6568ea7ef2966264a1e84\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"鸡胸肉煎饼\",\n            \"cover\": \"https://gym.eeyes.xyz/storage/photo/recipes/cover-1.png\",\n            \"low_price\": 6450,\n            \"up_price\": 6450,\n            \"price\": 1500,\n            \"description\": null\n        }\n    ]\n}"
 						}
 					]
 				},
@@ -2132,6 +2339,439 @@
 							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"cover\": \"https://gym.eeyes.xyz/storage/photo/recipes/cover-1.png\",\n        \"price\": \"195-195\",\n        \"description\": null,\n        \"details\": null\n    }\n}"
 						}
 					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Notification",
+			"item": [
+				{
+					"name": "获取通知列表",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1ODA2NjY2MTEsImV4cCI6MTU4MDY3MDIxMSwibmJmIjoxNTgwNjY2NjExLCJqdGkiOiJhTTc0T0FSZ1ZFTTR1aHpvIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.aPv-3B7TmD2ClnNsm4-L-yz-eLOtLru6xBGbjOO5zh8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/notifications?page=1&perpage=20",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"notifications"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "perpage",
+									"value": "20"
+								}
+							]
+						},
+						"description": "* 请求此接口以获取通知列表\n* 此举将将所有加载的通知标记为已读\n* 提供Token以认证\n* 允许提供page与per_page参数分页\n* 通知将有不同类型，加载时应由类型字段决定消息模板。"
+					},
+					"response": [
+						{
+							"name": "获取通知列表",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_host}}/notifications?page=1&perpage=20",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"notifications"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "perpage",
+											"value": "20"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.16.1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "private, must-revalidate"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 02 Feb 2020 18:05:52 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1580666812"
+								},
+								{
+									"key": "ETag",
+									"value": "\"2695d758705338c86921256db74cce6d33c3b30d\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": \"4be77640-0bb8-454f-a095-1ed2b3202975\",\n            \"type\": \"order_paid\",\n            \"content\": {\n                \"order_id\": \"05adfc1a-45a5-11ea-8d57-00163e03aa3b\",\n                \"fee\": 1500\n            },\n            \"created_at\": \"2020-02-02T16:48:25.000000Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "获取未读数目",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1ODA2NjY2MTEsImV4cCI6MTU4MDY3MDIxMSwibmJmIjoxNTgwNjY2NjExLCJqdGkiOiJhTTc0T0FSZ1ZFTTR1aHpvIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.aPv-3B7TmD2ClnNsm4-L-yz-eLOtLru6xBGbjOO5zh8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/notifications/stats",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"notifications",
+								"stats"
+							]
+						},
+						"description": "请求此接口以获取未读消息数目"
+					},
+					"response": [
+						{
+							"name": "获取未读数目",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_host}}/notifications/stats",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"notifications",
+										"stats"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.16.1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "private, must-revalidate"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 02 Feb 2020 18:07:46 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1580666926"
+								},
+								{
+									"key": "ETag",
+									"value": "\"c872dc062bdf91e147ae9f1427e596212d621f66\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"count\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "标记为已读",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1ODA2NjY2MTEsImV4cCI6MTU4MDY3MDIxMSwibmJmIjoxNTgwNjY2NjExLCJqdGkiOiJhTTc0T0FSZ1ZFTTR1aHpvIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.aPv-3B7TmD2ClnNsm4-L-yz-eLOtLru6xBGbjOO5zh8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/notifications/read",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"notifications",
+								"read"
+							]
+						},
+						"description": "请求此接口，将当前用户全部通知标记为已读。"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Reply",
+			"item": [
+				{
+					"name": "获取话题回复列表",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/topics/{topic}/replies",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"topics",
+								"{topic}",
+								"replies"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "获取话题回复列表",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api_host}}/topics/{topic}/replies",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"topics",
+										"{topic}",
+										"replies"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.16.1"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "private, must-revalidate"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 02 Feb 2020 19:04:08 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1580670255"
+								},
+								{
+									"key": "ETag",
+									"value": "\"42f02cb617623dade5299f02378c566199c77bce\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"topic_id\": 1,\n            \"content\": \"傻逼评论\",\n            \"created_at\": \"2周前\",\n            \"updated_at\": \"2周前\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "获取用户评论列表",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1ODA2NzAzMzIsImV4cCI6MTU4MDY3MzkzMiwibmJmIjoxNTgwNjcwMzMyLCJqdGkiOiI0alFOU3V4SXFLMERvNVU5Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.vKNh2VddcTc5_W5WOzAX__YoIY377CUOn2qUjUBWlBQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/user/replies",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"user",
+								"replies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "发表评论",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1ODA2NzAzMzIsImV4cCI6MTU4MDY3MzkzMiwibmJmIjoxNTgwNjcwMzMyLCJqdGkiOiI0alFOU3V4SXFLMERvNVU5Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.vKNh2VddcTc5_W5WOzAX__YoIY377CUOn2qUjUBWlBQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"content\": \"<p>傻逼回复傻逼评论</p>\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/topics/{topic}/replies",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"topics",
+								"{topic}",
+								"replies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除评论",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE1ODA2NzAzMzIsImV4cCI6MTU4MDY3MzkzMiwibmJmIjoxNTgwNjcwMzMyLCJqdGkiOiI0alFOU3V4SXFLMERvNVU5Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.vKNh2VddcTc5_W5WOzAX__YoIY377CUOn2qUjUBWlBQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/replies/2",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"replies",
+								"2"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}

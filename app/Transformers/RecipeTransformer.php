@@ -10,7 +10,7 @@ class RecipeTransformer extends TransformerAbstract
 {
     private $type;
 
-    public function __construct($type)
+    public function __construct($type=null)
     {
         $this->type = $type;
     }
@@ -39,7 +39,7 @@ class RecipeTransformer extends TransformerAbstract
                 return [
                     'id' => $recipe->id,
                     'name' => $recipe->name,
-                    'cover' => $recipe->cover,
+                    'cover' => url(str_replace('public', 'storage', $recipe->cover)),
                     'price' => $recipe->price,
                     'ingredients' => $ingredients->all(),
                     'description' => $recipe->description,
@@ -53,19 +53,19 @@ class RecipeTransformer extends TransformerAbstract
                     'breakfast' => [
                         'nutrient' => $recipe->breakfast['nutrient'],
                         'ingredients' => $recipe->breakfast,
-                        'photo' => $recipe->breakfast_cover,
+                        'photo' => url(str_replace('public', 'storage', $recipe->breakfast_cover)),
                         'step' => $recipe->breakfast_step,
                     ],
                     'lunch' => [
                         'nutrient' => $recipe->lunch['nutrient'],
                         'ingredients' => $recipe->lunch,
-                        'photo' => $recipe->lunch_cover,
+                        'photo' => url(str_replace('public', 'storage', $recipe->lunch_cover)),
                         'step' => $recipe->lunch_step,
                     ],
                     'dinner' => [
                         'nutrient' => $recipe->dinner['nutrient'],
                         'ingredients' => $recipe->dinner,
-                        'photo' => $recipe->dinner_cover,
+                        'photo' => url(str_replace('public', 'storage', $recipe->dinner_cover)),
                         'step' => $recipe->dinner_step,
                     ],
                 ];

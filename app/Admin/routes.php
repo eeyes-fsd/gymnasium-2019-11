@@ -12,7 +12,9 @@ Route::group([
     $router->get('/', 'HomeController@index')->name('admin.home');
     $router->resource('variables', 'VariablesController');
     $router->resource('users', 'UsersController');
+    $router->resource('topics', 'TopicsController');
     $router->resource('orders', 'OrdersController');
+    $router->resource('deliver', 'DeliverController');
     $router->resource('recipes', 'RecipesController');
     $router->resource('services', 'ServicesController');
     $router->resource('ingredients', 'IngredientsController');

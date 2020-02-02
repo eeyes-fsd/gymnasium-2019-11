@@ -5,6 +5,10 @@ namespace App\Observers;
 use App\Models\Order;
 use App\Models\Recipe;
 use App\Handlers\AlgorithmHandler;
+use App\Notifications\OrderCanceled;
+use App\Notifications\OrderPaid;
+use App\Notifications\OrderDelivering;
+use App\Notifications\OrderFinished;
 use Illuminate\Support\Facades\DB;
 
 class OrderObserver
@@ -14,24 +18,38 @@ class OrderObserver
      */
     public function saving(Order $order)
     {
-        if ($order->status === 1) {
+        switch ($order->status) {
+            case -1:
+                $order->user->notify(new OrderCanceled($order));
+                break;
+
             /** 如果订单包含食谱，添加至数据库 */
-            if (!empty($order->details['recipes'])) {
-                foreach ($order->details['recipes'] as $recipe) {
-                    DB::table('recipe_user')->insert([
-                        'user_id' => $order->user_id,
-                        'recipe_id' => $recipe
-                    ]);
+            case 1:
+                if (!empty($order->details['recipes'])) {
+                    foreach ($order->details['recipes'] as $recipe) {
+                        DB::table('recipe_user')->insert([
+                            'user_id' => $order->user_id,
+                            'recipe_id' => $recipe
+                        ]);
 
-                    $handler = new AlgorithmHandler();
-                    $user = $order->user;
+                        $handler = new AlgorithmHandler();
+                        $user = $order->user;
 
-                    $diet = $handler->calculate_dist($user->health, Recipe::find($recipe));
-                    $diet->save();
+                        $diet = $handler->calculate_dist($user->health, Recipe::find($recipe));
+                        $diet->save();
+                    }
                 }
-            }
 
-            //TODO 添加支付成功通知
+                $order->user->notify(new OrderPaid($order));
+                break;
+
+            case 2:
+                $order->user->notify(new OrderDelivering($order));
+                break;
+
+            case 3:
+                $order->user->notify(new OrderFinished($order));
+                break;
         }
     }
 }

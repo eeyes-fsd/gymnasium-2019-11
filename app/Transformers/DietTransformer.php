@@ -28,7 +28,6 @@ class DietTransformer extends TransformerAbstract
                     'price' => $recipe->price,
                     'weight' => $recipe->weight,
                     'description' => $recipe->description,
-                    'details' => $recipe->breakfast_step,
                 ];
                 break;
 

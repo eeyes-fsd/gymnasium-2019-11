@@ -68,7 +68,7 @@ class RecipesController extends Controller
 
             case 'new':
                 $recipes=Recipe::all()->reverse();
-                $recipes->forPage($request->page ?? 1,  $request->count ?? 20);
+                $recipes = $recipes->forPage($request->page ?? 1,  $request->count ?? 20);
                 break;
 
             case 'today':
@@ -82,5 +82,14 @@ class RecipesController extends Controller
         }
 
         return $this->response->collection($recipes, new RecipeTransformer('collection'));
+    }
+
+    /**
+     * @param Recipe $recipe
+     * @return \Dingo\Api\Http\Response
+     */
+    public function show2(Recipe $recipe)
+    {
+        return $this->response->item($recipe, new RecipeTransformer());
     }
 }

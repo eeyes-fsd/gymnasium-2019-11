@@ -5,13 +5,13 @@ $api = app('Dingo\Api\Routing\Router');
 $api->version('v1', [
     'namespace' => 'App\Http\Controllers\Api',
     'middleware' => 'bindings'
-], function ($api) {
+], function (\Dingo\Api\Routing\Router $api) {
     /** 认证接口 */
     $api->group([
         'middleware' => 'api.throttle',
         'limit' => config('api.throttling.sign.limit'),
         'expires' => config('api.throttling.sign.expires')
-    ], function ($api) {
+    ], function (\Dingo\Api\Routing\Router $api) {
         // 微信小程序登录
         $api->post('authorizations/weapp', 'AuthorizationsController@socialStore')
             ->name('api.authorizations.weapp.store');
@@ -25,7 +25,7 @@ $api->version('v1', [
         'middleware' => 'api.throttle',
         'limit' => config('api.throttling.access.limit'),
         'expires' => config('api.throttling.access.expires')
-    ], function ($api) {
+    ], function (\Dingo\Api\Routing\Router $api) {
         /** 无需认证的接口 */
         $api->post('user', 'UsersController@store')
             ->name('api.user.store');
@@ -50,24 +50,21 @@ $api->version('v1', [
         $api->get('topics/{topic}', 'TopicsController@show')
             ->name('api.topics.show');
 
-        $api->get('debug', function () {
-            $user = \App\Models\User::first();
-            $recipe = \App\Models\Recipe::first();
-            $health = $user->health;
-            $handler = new \App\Handlers\AlgorithmHandler();
-            return $handler->calculate_dist($health, $recipe);
-        });
-
         //套餐路由
         $api->get('recipes/{type?}', 'RecipesController@index')
             ->name('api.recipes.index');
+        $api->get('recipes/{recipe}/briefs', 'RecipesController@show2')
+            ->name('api.recipes.briefs');
 
         $api->get('diets', 'DietsController@index')
             ->name('api.diets.index');
 
+        $api->get('topics/{topic}/replies', 'RepliesController@index')
+            ->name('api.replies.topic');
+
         $api->group([
             'middleware' => 'api.auth',
-        ], function ($api) {
+        ], function (\Dingo\Api\Routing\Router $api) {
             /** 需要认证的接口 */
 
             // 用户路由
@@ -119,8 +116,21 @@ $api->version('v1', [
                 ->name('api.diets.show');
 
             $api->get('recipes/{recipe}/details', 'RecipesController@show')
-                ->name('api.recipes.show');
+                ->name('api.recipes.details');
 
+            $api->get('notifications', 'NotificationsController@index')
+                ->name('api.notifications.index');
+            $api->get('notifications/stats', 'NotificationsController@stats')
+                ->name('api.notifications.stats');
+            $api->patch('notifications/read', 'NotificationsController@read')
+                ->name('api.notifications.read');
+
+            $api->get('user/replies', 'RepliesController@index2')
+                ->name('api.replies.user');
+            $api->post('topics/{topic}/replies', 'RepliesController@store')
+                ->name('api.replies.topic');
+            $api->delete('replies/{reply}', 'RepliesController@destroy')
+                ->name('api.replies.destroy');
         });
     });
 });

@@ -105,7 +105,7 @@ class RecipesController extends AdminController
 
         $form->number('price', '食谱价格');
         $form->text('name', '食谱名称');
-        $form->image('cover', '食谱封面')->move('public/recipes')->uniqueName();
+        $form->image('cover', '食谱封面')->move('recipes')->uniqueName();
         $form->text('description', '食谱描述');
         $form->image('breakfast_cover')->move('public/meals')->uniqueName();
         $form->table('breakfast', '早餐', function (Form\NestedForm $table) use ($load_ingredients) {
@@ -113,13 +113,13 @@ class RecipesController extends AdminController
             $table->number('min', '最少用量 g');
         });
         $form->simditor('breakfast_step', '早餐制作步骤');
-        $form->image('lunch_cover')->move('public/meals')->uniqueName();
+        $form->image('lunch_cover')->move('meals')->uniqueName();
         $form->table('lunch', '午餐', function (Form\NestedForm $table) use ($load_ingredients) {
             $table->select('id', '食材')->options($load_ingredients);
             $table->number('min', '最少用量 g');
         });
         $form->simditor('lunch_step', '午餐制作步骤');
-        $form->image('dinner_cover')->move('public/meals')->uniqueName();
+        $form->image('dinner_cover')->move('meals')->uniqueName();
         $form->table('dinner', '晚餐', function (Form\NestedForm $table) use ($load_ingredients) {
             $table->select('id', '食材')->options($load_ingredients);
             $table->number('min', '最少用量 g');

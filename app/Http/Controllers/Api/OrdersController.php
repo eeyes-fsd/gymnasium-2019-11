@@ -9,6 +9,7 @@ use App\Models\Diet;
 use App\Models\Ingredient;
 use App\Models\Order;
 use App\Models\Variable;
+use App\Notifications\OrderPaid;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -60,11 +61,12 @@ class OrdersController extends Controller
             foreach ($diet->$name as $item) {
                 $ingredient = Ingredient::find($item['id']);
                 $fee += $ingredient->price * $item['amount'];
+                $weight += $item['amount'];
             }
             $fee += $cook ? $diet_recipe->cook_cost : 0;
         }
 
-        return array($fee, $weight);
+        return array($fee * $diet_['amount'], $weight * $diet_['amount']);
     }
 
     /**
@@ -85,7 +87,7 @@ class OrdersController extends Controller
             if ($recipe_ == 0) {
                 $recipes = Recipe::all();
                 foreach ($recipes as $r) {
-                    if (Auth::guard('api')->user()->hasRecipe($r)) {
+                    if (Auth::guard('api')->user()->has_recipe($r)) {
                         continue;
                     }
                     if ($discount['free'] && in_array($recipe_, $free_recipes)) {
@@ -98,7 +100,7 @@ class OrdersController extends Controller
             }
 
             $recipe = Recipe::findOrFail($recipe_);
-            if (Auth::guard('api')->user()->hasRecipe($recipe)) {
+            if (Auth::guard('api')->user()->has_recipe($recipe)) {
                 continue;
             }
             if ($discount['free'] && in_array($recipe_, $free_recipes)) {
@@ -164,6 +166,7 @@ class OrdersController extends Controller
             }
 
             // 计算重量附加费
+            $weight /= 1000;
             foreach ($weight_fee as $item) {
                 if ($weight > $item['lb'] && $weight <= $item['ub']) {
                     $fee += $item['fee'];
@@ -250,6 +253,8 @@ class OrdersController extends Controller
                     return $this->response->errorInternal('支付接口调用失败，请联系管理员');
                 }
 
+                Auth::guard('api')->user()->notify(new OrderPaid($order));
+
                 return $this->response->array([
                     'nonce_str' => $result['nonce_str'],
                     'prepay_id' => $result['prepay_id'],
@@ -268,6 +273,7 @@ class OrdersController extends Controller
                 }
 
                 $order->update($attributes);
+
 
                 return $this->response->noContent();
 

@@ -14,7 +14,7 @@ class TopicsController extends Controller
      */
     public function index()
     {
-        $topics = Topic::all();
+        $topics = Topic::where('status', 1)->get();
         return $this->response->collection($topics, new TopicTransformer('collection'));
     }
 
@@ -24,6 +24,7 @@ class TopicsController extends Controller
      */
     public function show(Topic $topic)
     {
+        if ($topic->status != 1) abort(404);
         return $this->response->item($topic, new TopicTransformer('item'));
     }
 
@@ -35,6 +36,7 @@ class TopicsController extends Controller
     {
         $attributes = $request->all();
         $attributes['user_id'] = Auth::id();
+        $attributes['status'] = 0;
 
         $topic = Topic::create($attributes);
         return $this->response->created(app('Dingo\Api\Routing\UrlGenerator')->version('v1')->route('api.topics.show', $topic->id));
@@ -44,10 +46,15 @@ class TopicsController extends Controller
      * @param Topic $topic
      * @param TopicRequest $request
      * @return \Dingo\Api\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Topic $topic, TopicRequest $request)
     {
-        $topic->update($request->all());
+        $this->authorize('update', $topic);
+
+        $attributes = $request->all();
+        $attributes['status'] = 0;
+        $topic->update($attributes);
         return $this->response->noContent();
     }
 
@@ -58,6 +65,8 @@ class TopicsController extends Controller
      */
     public function destroy(Topic $topic)
     {
+        $this->authorize('delete', $topic);
+
         $topic->delete();
         return $this->response->noContent();
     }

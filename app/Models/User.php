@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\DB;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -20,17 +21,22 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string $share_id
  * @property Address $address
  * @property Health $health
- * @property Collection $recipes
- * @property Collection $orders
- * @property Collection $topics
+ * @property Collection|Recipe[] $recipes
+ * @property Collection|Order[] $orders
+ * @property Collection|Topic[] $topics
+ * @property Collection|Reply[] $replies
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ *
+ * @property \Illuminate\Notifications\DatabaseNotificationCollection $notifications
  *
  * @method static static find(int $id)
  */
 class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable;
+    use Notifiable {
+        notify as super_notify;
+    }
 
     /**
      * The attributes that are not mass assignable.
@@ -132,6 +138,14 @@ class User extends Authenticatable implements JWTSubject
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyS
+     */
+    public function replies()
+    {
+        return $this->hasMany('App\Models\Reply', 'user_id');
+    }
+
+    /**
      * @param Recipe $recipe
      * @return bool
      */
@@ -141,5 +155,17 @@ class User extends Authenticatable implements JWTSubject
             ->where('user_id', $this->id)
             ->where('recipe_id', $recipe->id)
             ->exists();
+    }
+
+    /**
+     * @param Notification $notification
+     */
+    public function notify(Notification $notification)
+    {
+        if (method_exists($notification, 'toDatabase')) {
+            $this->increment('notifications_count');
+        }
+
+        $this->super_notify($notification);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Diet;
 use App\Models\Recipe;
 use App\Models\Ingredient;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class DietsController extends Controller
     {
         $diets = Recipe::all();
 
-        $diets->forPage($request->page ?? 1, $request->per_page ?? 20);
+        $diets = $diets->forPage($request->page ?? 1, $request->per_page ?? 20);
 
         foreach ($diets as $diet) {
             $price = 0;
@@ -44,8 +45,20 @@ class DietsController extends Controller
     public function show(Recipe $recipe)
     {
         $handler = new AlgorithmHandler();
-        $health = Auth::guard('api')->user()->health;
-        $diet = $handler->calculate_dist($health, $recipe);
+        if (!$health = Auth::guard('api')->user()->health) {
+            $diet = new Diet();
+
+            foreach (['breakfast', 'lunch', 'dinner'] as $item) {
+                $temp = [];
+                foreach ($recipe->$item as $ingredient) {
+                    $temp[] = [
+                        'id' => $ingredient['id'],
+                        'amount' => $ingredient['min'],
+                    ];
+                    $diet->$item = $temp;
+                }
+            }
+        } else $diet = $handler->calculate_dist($health, $recipe);
 
         $price = 0; $weight = 0;
 
