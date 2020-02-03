@@ -100,7 +100,7 @@ $api->version('v1', [
                 ->name('api.orders.index');
             $api->get('orders/{order}', 'OrdersController@show')
                 ->name('api.orders.show');
-            $api->patch('orders/{order}/{action}', 'OrdersController@update')
+            $api->put('orders/{order}/{action}', 'OrdersController@update')
                 ->name('api.orders.update');
             $api->post('orders', 'OrdersController@store')
                 ->name('api.orders.store');
@@ -122,7 +122,7 @@ $api->version('v1', [
                 ->name('api.notifications.index');
             $api->get('notifications/stats', 'NotificationsController@stats')
                 ->name('api.notifications.stats');
-            $api->patch('notifications/read', 'NotificationsController@read')
+            $api->put('notifications/read', 'NotificationsController@read')
                 ->name('api.notifications.read');
 
             $api->get('user/replies', 'RepliesController@index2')

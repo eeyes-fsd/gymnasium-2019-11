@@ -54,7 +54,19 @@ class OrdersController extends Controller
         $diet_recipe = Recipe::findOrFail($diet_['id']);
         if (!$diet = Diet::where('recipe_id', $diet_recipe->id)->where('user_id', Auth::id())->first()) {
             $handler = new AlgorithmHandler();
-            $diet = $handler->calculate_dist(Auth::guard('api')->user()->health, $diet_recipe);
+            if (!$health = Auth::guard('api')->user()->health) {
+                $diet = new Diet();
+                foreach (['breakfast', 'lunch', 'dinner'] as $item) {
+                    $temp = [];
+                    foreach ($diet_recipe->$item as $ingredient) {
+                        $temp[] = [
+                            'id' => $ingredient['id'],
+                            'amount' => $ingredient['min'],
+                        ];
+                        $diet->$item = $temp;
+                    }
+                }
+            } else $diet = $handler->calculate_dist($health, $diet_recipe);
         }
 
         foreach (['breakfast', 'lunch', 'dinner'] as $name) {
@@ -148,18 +160,18 @@ class OrdersController extends Controller
             // 计算距离，检查可用性
             $distance = AddressHandler::calculate_distance($address);
             $service_id = $distance[0]; $distance = $distance[1];
-            if ($distance < $deliver[0]['lb'] || $distance > last($deliver_fee)['ub']) abort(400, '无效地址');
+            if ($distance < $deliver_fee[0]->lb || $distance > $deliver_fee->last()->ub) abort(400, '无效地址');
 
             // 计算距离附加费
             $calculated = 0;
             foreach ($deliver_fee as $item) {
-                if ($distance > $item['lb']) {
-                    if ($distance <= $item['ub']) {
-                        $fee += ($distance - $calculated) * $item['fee'];
+                if ($distance > $item->lb) {
+                    if ($distance <= $item->ub) {
+                        $fee += ($distance - $calculated) * $item->fee;
                         break;
                     } else {
-                        $length = $item['ub'] - $item['lb'];
-                        $fee += $item['fee'] * $length;
+                        $length = $item->ub - $item->lb;
+                        $fee += $item->fee * $length;
                         $calculated += $length;
                     }
                 }
@@ -168,16 +180,16 @@ class OrdersController extends Controller
             // 计算重量附加费
             $weight /= 1000;
             foreach ($weight_fee as $item) {
-                if ($weight > $item['lb'] && $weight <= $item['ub']) {
-                    $fee += $item['fee'];
+                if ($weight > $item->lb && $weight <= $item->ub) {
+                    $fee += $item->fee;
                 }
             }
 
             // 计算时间附加费
             $deliver_at = Carbon::parse($request->deliver_at)->hour;
             foreach ($time_fee as $item) {
-                if ($deliver_at > $item['lb'] && $deliver_at <= $item['ub']) {
-                    $fee += $item['fee'];
+                if ($deliver_at > $item->lb && $deliver_at <= $item->ub) {
+                    $fee += $item->fee;
                 }
             }
         }
@@ -189,11 +201,11 @@ class OrdersController extends Controller
             'service_id' => $service_id ?? null,
             'fee' => $fee,
             'address_id' => $request->address_id,
-            'deliver_at' => $request->deliver_at,
+            'deliver_at' => $request->deliver_at ? Carbon::createFromFormat('Y-m-d\TH:i:s', $request->deliver_at) : Carbon::now(),
             'status' => '0'
         ]);
 
-        return $this->response->created($order->id);
+        return $this->response->created(app('Dingo\Api\Routing\UrlGenerator')->version('v1')->route('api.orders.update', [$order_id, 'pay']));
     }
 
     /**
@@ -243,6 +255,7 @@ class OrdersController extends Controller
                     'body' => '秤食-食谱购买',
                     'out_trade_no' => $order->id,
                     'total_fee' => $order->fee,
+                    'sign_type' => 'MD5',
                     'notify_url' => app('Dingo\Api\Routing\UrlGenerator')->version('v1')->route('api.orders.callback'),
                     'trade_type' => 'JSAPI',
                 ];

@@ -22,7 +22,7 @@ class DietTransformer extends TransformerAbstract
                 return [
                     'id' => $recipe->id,
                     'name' => $recipe->name,
-                    'cover' => $recipe->cover,
+                    'cover' => url(str_replace('public', 'storage', $recipe->cover)),
                     'low_price' => $recipe->ingredients_price,
                     'up_price' => $recipe->diet_price,
                     'price' => $recipe->price,
@@ -35,7 +35,7 @@ class DietTransformer extends TransformerAbstract
                 return [
                     'id' => $recipe->id,
                     'name' => $recipe->name,
-                    'cover' => $recipe->cover,
+                    'cover' => url(str_replace('public', 'storage', $recipe->cover)),
                     'low_price' => $recipe->ingredients_price,
                     'up_price' => $recipe->diet_price,
                     'price' => $recipe->price,
