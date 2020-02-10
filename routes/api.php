@@ -112,6 +112,9 @@ $api->version('v1', [
             $api->delete('topics/{topic}', 'TopicsController@destroy')
                 ->name('api.topics.delete');
 
+            $api->post('images', 'ImagesController@save')
+                ->name('api.images');
+
             $api->get('diets/{recipe}', 'DietsController@show')
                 ->name('api.diets.show');
 
