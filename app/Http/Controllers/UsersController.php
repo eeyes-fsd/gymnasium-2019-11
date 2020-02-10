@@ -19,7 +19,7 @@ class UsersController extends Controller
         ]);
 
         /** @var User $user */
-        $user = User::where('share_id', $request->share_id)->first();
+        if (!$user = User::where('share_id', $request->share_id)->first()) abort(404, '未找到该用户');
 
         return view('register', compact('user'));
     }
