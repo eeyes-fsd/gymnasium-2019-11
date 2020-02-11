@@ -27,7 +27,7 @@ class HandlersController extends Controller
 
         $captcha = random_int(10000, 99999);
 
-        if (!$handler->send($request->phone, $captcha, Auth::guard('api')->id() ?? 0)) {
+        if (!$handler->send($request->phone, $captcha)) {
             return $this->response->errorInternal('短信发送失败：无可用网关');
         }
 

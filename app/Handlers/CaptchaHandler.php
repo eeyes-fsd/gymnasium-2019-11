@@ -8,7 +8,7 @@ use Overtrue\EasySms\Exceptions\NoGatewayAvailableException;
 
 class CaptchaHandler
 {
-    public function send(string $phone, string $content, $id)
+    public function send(string $phone, string $content)
     {
         $easySms = new EasySms(config('sms'));
 
@@ -21,15 +21,15 @@ class CaptchaHandler
             return false;
         }
 
-        Cache::put('verify_phone:' . $id, $phone . $content, 1800);
+        Cache::put('verify_phone:' . $phone, $content, 1800);
         return true;
     }
 
-    public function verify($id, $phone, $captcha)
+    public function verify($phone, $captcha)
     {
-        if ($data = Cache::get('verify_phone:' . $id))
+        if ($data = Cache::get('verify_phone:' . $phone))
         {
-            if ($phone . $captcha == $data) {
+            if ($captcha == $data) {
                 return true;
             }
         }

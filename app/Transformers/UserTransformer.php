@@ -14,6 +14,8 @@ class UserTransformer extends TransformerAbstract
             'name' => $user->name,
             'phone' => $user->phone,
             'share_id' => $user->share_id,
+            'share_url' => route('register') . '?share_id=' . $user->share_id,
+            'qr_code' => url('storage/qr-code/' . $user->share_id . '.png')
         ];
     }
 }

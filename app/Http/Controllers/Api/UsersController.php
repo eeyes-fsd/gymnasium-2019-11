@@ -33,7 +33,7 @@ class UsersController extends Controller
     {
         $attributes = $request->except(['captcha']);
 
-        if (!$handler->verify(0, $request->phone, $request->captcha))
+        if (!$handler->verify($request->phone, $request->captcha))
         {
             return $this->response->array([
                 'phone' => [
@@ -68,7 +68,7 @@ class UsersController extends Controller
         $this->authorize('update', $user);
         $attributes = $request->all();
 
-        if (!$handler->verify($user->id, $request->phone, $request->captcha)) goto error422;
+        if (!$handler->verify($request->phone, $request->captcha)) goto error422;
 
         unset($attributes['captcha']);
         $user->update($attributes);
